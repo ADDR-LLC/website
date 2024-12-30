@@ -15,17 +15,19 @@
 <body>
     <form action="/submit_contact" method="post">
         <div class="fullName">
-            <input type="first_name" id="firstName" name="firstName" required placeholder="First Name"><br><br>
-            <input type="last_name" id="lastName" name="lastName" required placeholder="Last Name"><br><br>
+            <input type="text" id="firstName" name="firstName" required placeholder="First Name">
+            <input type="text" id="lastName" name="lastName" required placeholder="Last Name">
         </div>
-
-        <input type="email" id="userEmail" name="userEmail" required placeholder="Email : you@addr.com"><br><br>
+    
+        <input type="email" id="userEmail" name="userEmail" required placeholder="Email : you@addr.com">
         
-        <label for="subject">Subject:</label><br>
-        <input type="text" id="subject" name="subject" required><br><br>
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required>
         
-        <label for="description">Description:</label><br>
-        <textarea id="description" name="description" rows="4" cols="50" required placeholder="Type the description of your inquiry here..."></textarea><br><br>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" cols="50" required placeholder="Type the description of your inquiry here..."></textarea>
         
         <input type="submit" value="Submit">
     </form>
+</body>
+</html>
