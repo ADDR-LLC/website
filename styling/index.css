@@ -5,21 +5,20 @@ body {
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
+    font-family: 'SF Pro', sans-serif;
+    background-color: #000000;
 }
 
-
 header, footer {
-    background-color: #2e2e2e;
+    background-color: #000000;
     color: rgb(117, 116, 116);
     text-align: center;
     padding: 1em 0;
 }
 
-
 main {
     flex: 1;
 }
-
 
 @media (max-width: 600px) {
     header, footer {
@@ -27,30 +26,52 @@ main {
     }
 }
 
+
 /* the navbar component styling */
+header nav {
+    border-top: 1px solid #858585;
+    padding-top: 0.5em;
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+}
+
 header nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
     display: flex;
     justify-content: center;
-    background-color: #444;
+    font-family: 'Roboto', sans-serif;
 }
-
 
 header nav ul li {
     margin: 0 1em;
 }
-
 
 header nav ul li a {
     color: white;
     text-decoration: none;
     padding: 0.5em 1em;
     display: block;
+    transition: color 0.3s ease;
+}
+
+header nav ul li:hover a {
+    color: rgb(211, 135, 247);
 }
 
 
-header nav ul li a:hover {
-    background-color: #555;
+/* test inside the header */
+header h1 {
+    margin: 0;
+    padding: 0.5em 0;
+    color: white;
+}
+
+header h2 {
+    margin: 0;
+    padding: 0.5em 0;
+    color: white;
+    font-family: 'Roboto', sans-serif;
 }
