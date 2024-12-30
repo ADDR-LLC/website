@@ -8,17 +8,26 @@
     <title>Contact Us</title>
 
     <!-- make sure to add the correct dots before the path or the linking of the file will not work during prod-->
-    <link rel="stylesheet" href="../styling/contact.css"> 
+    <link rel="stylesheet" href="../styling/contact.css">
+    <script src="../js/contact.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <form action="/submit_contact" method="post">
-        <label for="userEmail">Email:</label><br>
-        <input type="email" id="userEmail" name="userEmail" required placeholder="you@addr.com"><br><br>
+        <div class="input-contain">
+            <input type="email" id="userEmail" name="userEmail" autocomplete="off" required aria-labelledby="placeholder-userEmail">
+            <label class="placeholder-text" for="userEmail" id="placeholder-userEmail">
+                <div class="text">Email</div>
+            </label>
+        </div><br><br>
         
-        <label for="subject">Subject:</label><br>
-        <input type="text" id="subject" name="subject" required><br><br>
+        <div class="input-contain">
+            <input type="text" id="subject" name="subject" autocomplete="off" required aria-labelledby="placeholder-subject">
+            <label class="placeholder-text" for="subject" id="placeholder-subject">
+                <div class="text">Subject</div>
+            </label>
+        </div><br><br>
         
         <label for="description">Description:</label><br>
         <textarea id="description" name="description" rows="4" cols="50" required placeholder="Type the description of your inquiry here..."></textarea><br><br>
