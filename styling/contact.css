@@ -65,11 +65,13 @@ textarea {
 input[type="submit"] {
     background: #444;
     color: white;
+    width: fit-content; /* can remove this if we want the button to span the whole width of the form */
     border: none;
     padding: 0.7em;
     font-size: 1em;
     cursor: pointer;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 input[type="submit"]:hover {

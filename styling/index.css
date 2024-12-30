@@ -18,6 +18,8 @@ header, footer {
 
 main {
     flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 @media (max-width: 600px) {
@@ -46,17 +48,15 @@ header nav ul {
 }
 
 header nav ul li button {
-    margin: 0 1em;
-}
-
-header nav ul li button {
     color: rgb(255, 255, 255);
     background-color: transparent;
     text-decoration: none;
     border: none;
     padding: 0.5em 1em;
+    margin: 0 1em;
     display: block;
     transition: color 0.3s ease;
+    cursor: pointer;
 }
 
 header nav ul li:hover button {
@@ -64,7 +64,7 @@ header nav ul li:hover button {
 }
 
 
-/* test inside the header */
+/* text inside the header */
 header h1 {
     margin: 0;
     padding: 0.5em 0;
@@ -76,4 +76,10 @@ header h2 {
     padding: 0.5em 0;
     color: white;
     font-family: 'Roboto', sans-serif;
+}
+
+/* iframe styling */
+iframe {
+    flex: 1;
+    border: none;
 }
