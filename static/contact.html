@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Welcome to ADDR</title>
+
+    <!-- make sure to add the correct dots before the path or the linking of the file will not work during prod-->
+    <link rel="stylesheet" href="../styling/contact.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <form action="/submit_contact" method="post">
+        <label for="userEmail">User Email:</label><br>
+        <input type="email" id="userEmail" name="userEmail" required placeholder="you@addr.com"><br><br>
+        
+        <label for="subject">Subject:</label><br>
+        <input type="text" id="subject" name="subject" required><br><br>
+        
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
+        
+        <input type="submit" value="Submit">
+    </form>

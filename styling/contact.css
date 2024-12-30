@@ -1,0 +1,77 @@
+/* change font in the body section */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'SF Pro', sans-serif;
+    background-color: #000000;
+    color: rgb(117, 116, 116);
+}
+
+
+header, footer {
+    background-color: #000000;
+    color: rgb(117, 116, 116);
+    text-align: center;
+    padding: 1em 0;
+}
+
+main {
+    flex: 1;
+    padding: 1em;
+}
+
+@media (max-width: 600px) {
+    header, footer {
+        font-size: 1.2em;
+    }
+}
+
+/* Other stuff */
+
+form {
+    max-width: 80%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1em;
+    background: #1a1a1a;
+    border-radius: 5px;
+}
+
+label {
+    margin-bottom: .5em;
+    color: white;
+    display: block;
+}
+
+input, textarea {
+    border: 1px solid #ccc;
+    padding: .5em;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 1em;
+    border-radius: 5px;
+    background: #333;
+    color: white;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input[type="submit"] {
+    background: #444;
+    color: white;
+    border: none;
+    padding: 0.7em;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+input[type="submit"]:hover {
+    background: rgb(211, 135, 247);
+}
