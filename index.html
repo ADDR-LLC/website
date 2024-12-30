@@ -9,6 +9,7 @@
 
     <!-- make sure to add the correct dots before the path or the linking of the file will not work during prod-->
     <link rel="stylesheet" href="./styling/index.css"> 
+    <script src="./js/index.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
 
@@ -20,17 +21,16 @@
         <!-- TODO: change these to scroll to specific sections -->
         <nav>
             <ul>
-                <li><a href="./static/home.html">Home</a></li>
-                <li><a href="./static/mission.html">Our Mission</a></li>
-                <li><a href="./static/concept.html">Concept</a></li>
-                <li><a href="./static/contact.html">Contact</a></li>
+            <li><button onclick="loadContent('./static/home.html')">Home</button></li>
+            <li><button onclick="loadContent('./static/mission.html')">Our Mission</button></li>
+            <li><button onclick="loadContent('./static/concept.html')">Concept</button></li>
+            <li><button onclick="loadContent('./static/contact.html')">Contact</button></li>
             </ul>
         </nav>
     </header>
     <main>
         <p>This is ADDR</p>
-        <!-- TODO: Implement iframe for the other pages -->
-
+        <iframe id="contentFrame" src="" style="width: 100%; height: 600px; border: none;"></iframe>
     </main>
     <footer>
         <p>&copy; ADDR LLC</p>

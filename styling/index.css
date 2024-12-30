@@ -45,19 +45,21 @@ header nav ul {
     font-family: 'Roboto', sans-serif;
 }
 
-header nav ul li {
+header nav ul li button {
     margin: 0 1em;
 }
 
-header nav ul li a {
-    color: white;
+header nav ul li button {
+    color: rgb(255, 255, 255);
+    background-color: transparent;
     text-decoration: none;
+    border: none;
     padding: 0.5em 1em;
     display: block;
     transition: color 0.3s ease;
 }
 
-header nav ul li:hover a {
+header nav ul li:hover button {
     color: rgb(211, 135, 247);
 }
 
