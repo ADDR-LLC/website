@@ -31,11 +31,12 @@ main {
 
 /* the navbar component styling */
 header nav {
-    border-top: 1px solid #858585;
-    padding-top: 0.5em;
-    margin-top: 1em;
+    border-bottom: 1px solid grey;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
     display: flex;
     justify-content: center;
+    /* background-color: grey; */
 }
 
 header nav ul {
@@ -62,6 +63,22 @@ header nav ul li button {
 header nav ul li:hover button {
     color: rgb(211, 135, 247);
 }
+
+/* #home_button:hover {
+    color: rgb(211, 135, 247);
+}
+
+#mission_button:hover {
+    color: rgb(0, 110, 255);
+}
+
+#concept_button:hover {
+    color: rgb(128, 209, 150);
+}
+
+#contact_button:hover {
+    color: rgb(255, 126, 175);
+} */
 
 
 /* text inside the header */
