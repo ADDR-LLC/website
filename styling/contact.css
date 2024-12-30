@@ -1,3 +1,24 @@
+/* scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(211, 135, 247) #ffffff00;
+}
+
+*::-webkit-scrollbar {
+    width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+    background: rgba(8, 18, 48, 0);
+    backdrop-filter: blur(2px);
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgb(211, 135, 247);
+    border-radius: 10px;
+}
+
+
 /* change font in the body section */
 body {
     display: flex;
@@ -8,14 +29,6 @@ body {
     font-family: 'SF Pro', sans-serif;
     background-color: #000000;
     color: rgb(117, 116, 116);
-}
-
-
-header, footer {
-    background-color: #000000;
-    color: rgb(117, 116, 116);
-    text-align: center;
-    padding: 1em 0;
 }
 
 main {
@@ -29,15 +42,29 @@ main {
     }
 }
 
-/* Other stuff */
 
+/* Other stuff */
 form {
-    max-width: 80%;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
     margin: 0 auto;
     padding: 1em;
     background: #1a1a1a;
-    border-radius: 5px;
+    border-radius: 5px; 
+}
+
+.fullName {
+    display: flex;
+    gap: 1em;
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+.fullName input {
+    flex: 1;
+    margin: 0.5em 0;
 }
 
 label {
@@ -65,7 +92,7 @@ textarea {
 input[type="submit"] {
     background: #444;
     color: white;
-    width: fit-content; /* can remove this if we want the button to span the whole width of the form */
+    /* width: fit-content; can remove this if we want the button to span the whole width of the form */
     border: none;
     padding: 0.7em;
     font-size: 1em;
