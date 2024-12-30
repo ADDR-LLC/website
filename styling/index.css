@@ -1,0 +1,56 @@
+/* the main stuff is up here */
+/* Change font in the body section */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+
+header, footer {
+    background-color: #2e2e2e;
+    color: rgb(117, 116, 116);
+    text-align: center;
+    padding: 1em 0;
+}
+
+
+main {
+    flex: 1;
+}
+
+
+@media (max-width: 600px) {
+    header, footer {
+        font-size: 1.2em;
+    }
+}
+
+/* the navbar component styling */
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #444;
+}
+
+
+header nav ul li {
+    margin: 0 1em;
+}
+
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    display: block;
+}
+
+
+header nav ul li a:hover {
+    background-color: #555;
+}
