@@ -54,6 +54,17 @@ form {
     border-radius: 5px;
 }
 
+.fullName {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.fullName input {
+    flex: 1;
+}
+
 label {
     margin-bottom: .5em;
     color: white;
