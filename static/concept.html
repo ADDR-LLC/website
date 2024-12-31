@@ -10,9 +10,21 @@
     <!-- make sure to add the correct dots before the path or the linking of the file will not work during prod-->
     <link rel="stylesheet" href="../styling/concept.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+    <!-- Linking three js into here using below -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@v0.163.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@v0.163.0/examples/jsm/"
+            }
+        }
+    </script>
 </head>
 
 <body>
-    <h1>Our Concept</h1>
-    <p>Our concept will be shown here (maybe use three.js for a 3d model?)</p>
+    <!-- <h1>Our Concept</h1>
+    <p>Our concept will be shown here (maybe use three.js for a 3d model?)</p> -->
+    <script type="module" src="../js/concept.js"></script>
 </body>
+</html>
