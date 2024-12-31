@@ -75,11 +75,6 @@ scene.add(cube);
 //     scene.add(mesh);
 // });
 
-
-
-
-
-
 // necessary animate functions
 function animate() {
     requestAnimationFrame(animate);
@@ -87,3 +82,14 @@ function animate() {
   }
   
 animate();
+
+
+// Listener for window resize
+window.addEventListener('resize', () => {
+  // camera aspect ratio and projection matrix
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  // updating renderer size
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
