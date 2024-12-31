@@ -60,24 +60,37 @@ h1 {
     font-size: 24px;
 }
 
-.info_box_title {
-    display: flex;
-    gap: 0.5em; /* Adjust the gap between the text as needed */
-    align-items: center; /* Align items vertically in the center */
-    color: white
-}
 
 #mission_box {
+    border: 2px solid transparent;
+    transition: border 0.3s ease;
+}
+
+#mission_box:hover {
     border: 2px solid #845ef7;
 }
 
+
 #vision_box {
+    border: 2px solid transparent;
+    transition: border 0.3s ease;
+}
+
+#vision_box:hover {
     border: 2px solid #5c7cfa;
 }
 
+
 #team_box {
+    border: 2px solid transparent;
+    transition: border 0.3s ease;
+    
+}
+
+#team_box:hover {
     border: 2px solid #f06595;
 }
+
 
 .info_box p {
     color: #ffffff;

@@ -11,6 +11,8 @@ function loadContent(url) {
     };
 }
 
+
+
 // function changeNavbarColor(page) {
 //     var navbar = document.getElementById('navbar');
 //     switch(page) {
