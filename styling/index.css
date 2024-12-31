@@ -3,6 +3,26 @@
     --purple: rgb(211, 135, 247);
 }
 
+/* scrollbar, everything disabled for clean look */
+* {
+    scrollbar-width: none;
+    scrollbar-color: rgba(0, 0, 0, 0) #ffffff00;
+}
+
+*::-webkit-scrollbar {
+    width: 0px;
+}
+
+*::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(2px);
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 0px;
+}
+
 /* the main stuff is up here */
 /* Change font in the body section */
 body {
@@ -14,11 +34,20 @@ body {
     background-color: #000000;
 }
 
-header, footer {
+header {
     background-color: #000000;
     color: rgb(117, 116, 116);
     text-align: center;
     padding: 1em 0;
+}
+
+footer {
+    background-color: #000000;
+    color: rgb(117, 116, 116);
+    text-align: center;
+    padding: 0.5em;
+    font-size: 0.8em;
+    height: 0em;
 }
 
 main {
@@ -104,6 +133,7 @@ header h2 {
 iframe {
     flex: 1;
     border: none;
+    height: 100%;
 }
 
 /* Wavy Bar Styling */
