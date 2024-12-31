@@ -52,14 +52,31 @@ h1 {
     padding: 20px;
     border: none;
     border-radius: 10px;
-    background-color: #1a1a1a;
+    background-color: #272727;
 }
-
 
 .info_box h2 {
     color: #ffffff;
-    text-align: left;
-    margin: 0 0 20px 0;
+    font-size: 24px;
+}
+
+.info_box_title {
+    display: flex;
+    gap: 0.5em; /* Adjust the gap between the text as needed */
+    align-items: center; /* Align items vertically in the center */
+    color: white
+}
+
+#mission_box {
+    border: 2px solid #845ef7;
+}
+
+#vision_box {
+    border: 2px solid #5c7cfa;
+}
+
+#team_box {
+    border: 2px solid #f06595;
 }
 
 .info_box p {
