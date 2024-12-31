@@ -30,6 +30,8 @@ body {
     align-items: center;
     height: 80vh;
     font-family: 'Roboto', sans-serif;
+    position: relative;
+    z-index: 1;
 }
 
 h1 {
@@ -43,4 +45,14 @@ p {
     text-align: center;
     font-size: 18px;
     margin-top: 10px;
+}
+
+#prod_video_render {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
 }
