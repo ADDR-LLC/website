@@ -32,32 +32,22 @@ controls.enableDamping = true;
 controls.enablePan = false;
 controls.minDistance = 5;
 controls.maxDistance = 20;
-controls.minPolarAngle = 0.5;
-controls.maxPolarAngle = 1.5;
+controls.minPolarAngle = 0;
+controls.maxPolarAngle = Math.PI; 
 controls.autoRotate = false;
 controls.target = new THREE.Vector3(0, 1, 0);
 controls.update();
 
+// ambient light
+const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+scene.add(ambientLight);
 
-// for creating a ground
-const groundGeometry = new THREE.PlaneGeometry(20, 20, 32, 32);
-groundGeometry.rotateX(-Math.PI / 2);
-const groundMaterial = new THREE.MeshStandardMaterial({
-  color: 0x555555,
-  side: THREE.DoubleSide
-});
-const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
-groundMesh.castShadow = false;
-groundMesh.receiveShadow = true;
-scene.add(groundMesh);
+// directional light
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+directionalLight.position.set(5, 10, 7.5);
+directionalLight.castShadow = true;
+scene.add(directionalLight);
 
-
-// for creating a light
-const spotLight = new THREE.SpotLight(0xffffff, 3000, 100, 0.22, 1);
-spotLight.position.set(0, 25, 0);
-spotLight.castShadow = true;
-spotLight.shadow.bias = -0.0001;
-scene.add(spotLight);
 
 // adding a cube to the scene
 const cubeGeometry = new THREE.BoxGeometry();
