@@ -18,6 +18,9 @@ renderer.setPixelRatio(window.devicePixelRatio);
 // adding the renderer to the body of the document
 document.body.appendChild(renderer.domElement);
 
+
+
+
 // creating a scene
 const scene = new THREE.Scene();
 
@@ -72,6 +75,7 @@ function animate() {
   }
   
 animate();
+
 
 
 // Listener for window resize
