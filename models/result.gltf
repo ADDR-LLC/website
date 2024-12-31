@@ -1,0 +1,1280 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.2.cf7d3637)"
+    },
+    "extensionsUsed": [
+        "KHR_materials_volume",
+        "FB_ngon_encoding"
+    ],
+    "buffers": [
+        {
+            "byteLength": 0,
+            "uri": "result.bin"
+        }
+    ],
+    "materials": [
+        {
+            "name": "material"
+        }
+    ],
+    "nodes": [
+        {
+            "name": "nodes[311]",
+            "children": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                42,
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50,
+                51,
+                52,
+                53,
+                54,
+                55,
+                56,
+                57,
+                58,
+                59,
+                60,
+                61,
+                62,
+                63,
+                64,
+                65,
+                66,
+                67,
+                68,
+                69,
+                70,
+                71,
+                72,
+                73,
+                74,
+                75,
+                76,
+                77,
+                78,
+                79,
+                80,
+                81,
+                82,
+                83,
+                84,
+                85,
+                86,
+                87,
+                88,
+                89,
+                90,
+                91,
+                92,
+                93,
+                94,
+                95,
+                96,
+                97,
+                98,
+                99,
+                100,
+                101,
+                102,
+                103,
+                104,
+                105,
+                106,
+                107,
+                108,
+                109,
+                110,
+                111,
+                112,
+                113,
+                114,
+                115,
+                116,
+                117,
+                118,
+                119,
+                120,
+                121,
+                122,
+                123,
+                124,
+                125,
+                126,
+                127,
+                128,
+                129,
+                130,
+                131,
+                132,
+                133,
+                134,
+                135,
+                136,
+                137,
+                138,
+                139,
+                140,
+                141,
+                142,
+                143,
+                144,
+                145,
+                146,
+                147,
+                148,
+                149,
+                150,
+                151,
+                152,
+                153,
+                154,
+                155,
+                156,
+                157,
+                158,
+                159,
+                160,
+                161,
+                162,
+                163,
+                164,
+                165,
+                166,
+                167,
+                168,
+                169,
+                170,
+                171,
+                172,
+                173,
+                174,
+                175,
+                176,
+                177,
+                178,
+                179,
+                180,
+                181,
+                182,
+                183,
+                184,
+                185,
+                186,
+                187,
+                188,
+                189,
+                190,
+                191,
+                192,
+                193,
+                194,
+                195,
+                196,
+                197,
+                198,
+                199,
+                200,
+                201,
+                202,
+                203,
+                204,
+                205,
+                206,
+                207,
+                208,
+                209,
+                210,
+                211,
+                212,
+                213,
+                214,
+                215,
+                216,
+                217,
+                218,
+                219,
+                220,
+                221,
+                222,
+                223,
+                224,
+                225,
+                226,
+                227,
+                228,
+                229,
+                230,
+                231,
+                232,
+                233,
+                234,
+                235,
+                236,
+                237,
+                238,
+                239,
+                240,
+                241,
+                242,
+                243,
+                244,
+                245,
+                246,
+                247,
+                248,
+                249,
+                250,
+                251,
+                252,
+                253,
+                254,
+                255,
+                256,
+                257,
+                258,
+                259,
+                260,
+                261,
+                262,
+                263,
+                264,
+                265,
+                266,
+                267,
+                268,
+                269,
+                270,
+                271,
+                272,
+                273,
+                274,
+                275,
+                276,
+                277,
+                278,
+                279,
+                280,
+                281,
+                282,
+                283,
+                284,
+                285,
+                286,
+                287,
+                288,
+                289,
+                290,
+                291,
+                292,
+                293,
+                294,
+                295,
+                296,
+                297,
+                298,
+                299,
+                300,
+                301,
+                302,
+                303,
+                304,
+                305,
+                306,
+                307,
+                308,
+                309,
+                310,
+                311
+            ]
+        },
+        {
+            "name": "nodes[0]"
+        },
+        {
+            "name": "nodes[1]"
+        },
+        {
+            "name": "nodes[2]"
+        },
+        {
+            "name": "nodes[3]"
+        },
+        {
+            "name": "nodes[4]"
+        },
+        {
+            "name": "nodes[5]"
+        },
+        {
+            "name": "nodes[6]"
+        },
+        {
+            "name": "nodes[7]"
+        },
+        {
+            "name": "nodes[8]"
+        },
+        {
+            "name": "nodes[9]"
+        },
+        {
+            "name": "nodes[10]"
+        },
+        {
+            "name": "nodes[11]"
+        },
+        {
+            "name": "nodes[12]"
+        },
+        {
+            "name": "nodes[13]"
+        },
+        {
+            "name": "nodes[14]"
+        },
+        {
+            "name": "nodes[15]"
+        },
+        {
+            "name": "nodes[16]"
+        },
+        {
+            "name": "nodes[17]"
+        },
+        {
+            "name": "nodes[18]"
+        },
+        {
+            "name": "nodes[19]"
+        },
+        {
+            "name": "nodes[20]"
+        },
+        {
+            "name": "nodes[21]"
+        },
+        {
+            "name": "nodes[22]"
+        },
+        {
+            "name": "nodes[23]"
+        },
+        {
+            "name": "nodes[24]"
+        },
+        {
+            "name": "nodes[25]"
+        },
+        {
+            "name": "nodes[26]"
+        },
+        {
+            "name": "nodes[27]"
+        },
+        {
+            "name": "nodes[28]"
+        },
+        {
+            "name": "nodes[29]"
+        },
+        {
+            "name": "nodes[30]"
+        },
+        {
+            "name": "nodes[31]"
+        },
+        {
+            "name": "nodes[32]"
+        },
+        {
+            "name": "nodes[33]"
+        },
+        {
+            "name": "nodes[34]"
+        },
+        {
+            "name": "nodes[35]"
+        },
+        {
+            "name": "nodes[36]"
+        },
+        {
+            "name": "nodes[37]"
+        },
+        {
+            "name": "nodes[38]"
+        },
+        {
+            "name": "nodes[39]"
+        },
+        {
+            "name": "nodes[40]"
+        },
+        {
+            "name": "nodes[41]"
+        },
+        {
+            "name": "nodes[42]"
+        },
+        {
+            "name": "nodes[43]"
+        },
+        {
+            "name": "nodes[44]"
+        },
+        {
+            "name": "nodes[45]"
+        },
+        {
+            "name": "nodes[46]"
+        },
+        {
+            "name": "nodes[47]"
+        },
+        {
+            "name": "nodes[48]"
+        },
+        {
+            "name": "nodes[49]"
+        },
+        {
+            "name": "nodes[50]"
+        },
+        {
+            "name": "nodes[51]"
+        },
+        {
+            "name": "nodes[52]"
+        },
+        {
+            "name": "nodes[53]"
+        },
+        {
+            "name": "nodes[54]"
+        },
+        {
+            "name": "nodes[55]"
+        },
+        {
+            "name": "nodes[56]"
+        },
+        {
+            "name": "nodes[57]"
+        },
+        {
+            "name": "nodes[58]"
+        },
+        {
+            "name": "nodes[59]"
+        },
+        {
+            "name": "nodes[60]"
+        },
+        {
+            "name": "nodes[61]"
+        },
+        {
+            "name": "nodes[62]"
+        },
+        {
+            "name": "nodes[63]"
+        },
+        {
+            "name": "nodes[64]"
+        },
+        {
+            "name": "nodes[65]"
+        },
+        {
+            "name": "nodes[66]"
+        },
+        {
+            "name": "nodes[67]"
+        },
+        {
+            "name": "nodes[68]"
+        },
+        {
+            "name": "nodes[69]"
+        },
+        {
+            "name": "nodes[70]"
+        },
+        {
+            "name": "nodes[71]"
+        },
+        {
+            "name": "nodes[72]"
+        },
+        {
+            "name": "nodes[73]"
+        },
+        {
+            "name": "nodes[74]"
+        },
+        {
+            "name": "nodes[75]"
+        },
+        {
+            "name": "nodes[76]"
+        },
+        {
+            "name": "nodes[77]"
+        },
+        {
+            "name": "nodes[78]"
+        },
+        {
+            "name": "nodes[79]"
+        },
+        {
+            "name": "nodes[80]"
+        },
+        {
+            "name": "nodes[81]"
+        },
+        {
+            "name": "nodes[82]"
+        },
+        {
+            "name": "nodes[83]"
+        },
+        {
+            "name": "nodes[84]"
+        },
+        {
+            "name": "nodes[85]"
+        },
+        {
+            "name": "nodes[86]"
+        },
+        {
+            "name": "nodes[87]"
+        },
+        {
+            "name": "nodes[88]"
+        },
+        {
+            "name": "nodes[89]"
+        },
+        {
+            "name": "nodes[90]"
+        },
+        {
+            "name": "nodes[91]"
+        },
+        {
+            "name": "nodes[92]"
+        },
+        {
+            "name": "nodes[93]"
+        },
+        {
+            "name": "nodes[94]"
+        },
+        {
+            "name": "nodes[95]"
+        },
+        {
+            "name": "nodes[96]"
+        },
+        {
+            "name": "nodes[97]"
+        },
+        {
+            "name": "nodes[98]"
+        },
+        {
+            "name": "nodes[99]"
+        },
+        {
+            "name": "nodes[100]"
+        },
+        {
+            "name": "nodes[101]"
+        },
+        {
+            "name": "nodes[102]"
+        },
+        {
+            "name": "nodes[103]"
+        },
+        {
+            "name": "nodes[104]"
+        },
+        {
+            "name": "nodes[105]"
+        },
+        {
+            "name": "nodes[106]"
+        },
+        {
+            "name": "nodes[107]"
+        },
+        {
+            "name": "nodes[108]"
+        },
+        {
+            "name": "nodes[109]"
+        },
+        {
+            "name": "nodes[110]"
+        },
+        {
+            "name": "nodes[111]"
+        },
+        {
+            "name": "nodes[112]"
+        },
+        {
+            "name": "nodes[113]"
+        },
+        {
+            "name": "nodes[114]"
+        },
+        {
+            "name": "nodes[115]"
+        },
+        {
+            "name": "nodes[116]"
+        },
+        {
+            "name": "nodes[117]"
+        },
+        {
+            "name": "nodes[118]"
+        },
+        {
+            "name": "nodes[119]"
+        },
+        {
+            "name": "nodes[120]"
+        },
+        {
+            "name": "nodes[121]"
+        },
+        {
+            "name": "nodes[122]"
+        },
+        {
+            "name": "nodes[123]"
+        },
+        {
+            "name": "nodes[124]"
+        },
+        {
+            "name": "nodes[125]"
+        },
+        {
+            "name": "nodes[126]"
+        },
+        {
+            "name": "nodes[127]"
+        },
+        {
+            "name": "nodes[128]"
+        },
+        {
+            "name": "nodes[129]"
+        },
+        {
+            "name": "nodes[130]"
+        },
+        {
+            "name": "nodes[131]"
+        },
+        {
+            "name": "nodes[132]"
+        },
+        {
+            "name": "nodes[133]"
+        },
+        {
+            "name": "nodes[134]"
+        },
+        {
+            "name": "nodes[135]"
+        },
+        {
+            "name": "nodes[136]"
+        },
+        {
+            "name": "nodes[137]"
+        },
+        {
+            "name": "nodes[138]"
+        },
+        {
+            "name": "nodes[139]"
+        },
+        {
+            "name": "nodes[140]"
+        },
+        {
+            "name": "nodes[141]"
+        },
+        {
+            "name": "nodes[142]"
+        },
+        {
+            "name": "nodes[143]"
+        },
+        {
+            "name": "nodes[144]"
+        },
+        {
+            "name": "nodes[145]"
+        },
+        {
+            "name": "nodes[146]"
+        },
+        {
+            "name": "nodes[147]"
+        },
+        {
+            "name": "nodes[148]"
+        },
+        {
+            "name": "nodes[149]"
+        },
+        {
+            "name": "nodes[150]"
+        },
+        {
+            "name": "nodes[151]"
+        },
+        {
+            "name": "nodes[152]"
+        },
+        {
+            "name": "nodes[153]"
+        },
+        {
+            "name": "nodes[154]"
+        },
+        {
+            "name": "nodes[155]"
+        },
+        {
+            "name": "nodes[156]"
+        },
+        {
+            "name": "nodes[157]"
+        },
+        {
+            "name": "nodes[158]"
+        },
+        {
+            "name": "nodes[159]"
+        },
+        {
+            "name": "nodes[160]"
+        },
+        {
+            "name": "nodes[161]"
+        },
+        {
+            "name": "nodes[162]"
+        },
+        {
+            "name": "nodes[163]"
+        },
+        {
+            "name": "nodes[164]"
+        },
+        {
+            "name": "nodes[165]"
+        },
+        {
+            "name": "nodes[166]"
+        },
+        {
+            "name": "nodes[167]"
+        },
+        {
+            "name": "nodes[168]"
+        },
+        {
+            "name": "nodes[169]"
+        },
+        {
+            "name": "nodes[170]"
+        },
+        {
+            "name": "nodes[171]"
+        },
+        {
+            "name": "nodes[172]"
+        },
+        {
+            "name": "nodes[173]"
+        },
+        {
+            "name": "nodes[174]"
+        },
+        {
+            "name": "nodes[175]"
+        },
+        {
+            "name": "nodes[176]"
+        },
+        {
+            "name": "nodes[177]"
+        },
+        {
+            "name": "nodes[178]"
+        },
+        {
+            "name": "nodes[179]"
+        },
+        {
+            "name": "nodes[180]"
+        },
+        {
+            "name": "nodes[181]"
+        },
+        {
+            "name": "nodes[182]"
+        },
+        {
+            "name": "nodes[183]"
+        },
+        {
+            "name": "nodes[184]"
+        },
+        {
+            "name": "nodes[185]"
+        },
+        {
+            "name": "nodes[186]"
+        },
+        {
+            "name": "nodes[187]"
+        },
+        {
+            "name": "nodes[188]"
+        },
+        {
+            "name": "nodes[189]"
+        },
+        {
+            "name": "nodes[190]"
+        },
+        {
+            "name": "nodes[191]"
+        },
+        {
+            "name": "nodes[192]"
+        },
+        {
+            "name": "nodes[193]"
+        },
+        {
+            "name": "nodes[194]"
+        },
+        {
+            "name": "nodes[195]"
+        },
+        {
+            "name": "nodes[196]"
+        },
+        {
+            "name": "nodes[197]"
+        },
+        {
+            "name": "nodes[198]"
+        },
+        {
+            "name": "nodes[199]"
+        },
+        {
+            "name": "nodes[200]"
+        },
+        {
+            "name": "nodes[201]"
+        },
+        {
+            "name": "nodes[202]"
+        },
+        {
+            "name": "nodes[203]"
+        },
+        {
+            "name": "nodes[204]"
+        },
+        {
+            "name": "nodes[205]"
+        },
+        {
+            "name": "nodes[206]"
+        },
+        {
+            "name": "nodes[207]"
+        },
+        {
+            "name": "nodes[208]"
+        },
+        {
+            "name": "nodes[209]"
+        },
+        {
+            "name": "nodes[210]"
+        },
+        {
+            "name": "nodes[211]"
+        },
+        {
+            "name": "nodes[212]"
+        },
+        {
+            "name": "nodes[213]"
+        },
+        {
+            "name": "nodes[214]"
+        },
+        {
+            "name": "nodes[215]"
+        },
+        {
+            "name": "nodes[216]"
+        },
+        {
+            "name": "nodes[217]"
+        },
+        {
+            "name": "nodes[218]"
+        },
+        {
+            "name": "nodes[219]"
+        },
+        {
+            "name": "nodes[220]"
+        },
+        {
+            "name": "nodes[221]"
+        },
+        {
+            "name": "nodes[222]"
+        },
+        {
+            "name": "nodes[223]"
+        },
+        {
+            "name": "nodes[224]"
+        },
+        {
+            "name": "nodes[225]"
+        },
+        {
+            "name": "nodes[226]"
+        },
+        {
+            "name": "nodes[227]"
+        },
+        {
+            "name": "nodes[228]"
+        },
+        {
+            "name": "nodes[229]"
+        },
+        {
+            "name": "nodes[230]"
+        },
+        {
+            "name": "nodes[231]"
+        },
+        {
+            "name": "nodes[232]"
+        },
+        {
+            "name": "nodes[233]"
+        },
+        {
+            "name": "nodes[234]"
+        },
+        {
+            "name": "nodes[235]"
+        },
+        {
+            "name": "nodes[236]"
+        },
+        {
+            "name": "nodes[237]"
+        },
+        {
+            "name": "nodes[238]"
+        },
+        {
+            "name": "nodes[239]"
+        },
+        {
+            "name": "nodes[240]"
+        },
+        {
+            "name": "nodes[241]"
+        },
+        {
+            "name": "nodes[242]"
+        },
+        {
+            "name": "nodes[243]"
+        },
+        {
+            "name": "nodes[244]"
+        },
+        {
+            "name": "nodes[245]"
+        },
+        {
+            "name": "nodes[246]"
+        },
+        {
+            "name": "nodes[247]"
+        },
+        {
+            "name": "nodes[248]"
+        },
+        {
+            "name": "nodes[249]"
+        },
+        {
+            "name": "nodes[250]"
+        },
+        {
+            "name": "nodes[251]"
+        },
+        {
+            "name": "nodes[252]"
+        },
+        {
+            "name": "nodes[253]"
+        },
+        {
+            "name": "nodes[254]"
+        },
+        {
+            "name": "nodes[255]"
+        },
+        {
+            "name": "nodes[256]"
+        },
+        {
+            "name": "nodes[257]"
+        },
+        {
+            "name": "nodes[258]"
+        },
+        {
+            "name": "nodes[259]"
+        },
+        {
+            "name": "nodes[260]"
+        },
+        {
+            "name": "nodes[261]"
+        },
+        {
+            "name": "nodes[262]"
+        },
+        {
+            "name": "nodes[263]"
+        },
+        {
+            "name": "nodes[264]"
+        },
+        {
+            "name": "nodes[265]"
+        },
+        {
+            "name": "nodes[266]"
+        },
+        {
+            "name": "nodes[267]"
+        },
+        {
+            "name": "nodes[268]"
+        },
+        {
+            "name": "nodes[269]"
+        },
+        {
+            "name": "nodes[270]"
+        },
+        {
+            "name": "nodes[271]"
+        },
+        {
+            "name": "nodes[272]"
+        },
+        {
+            "name": "nodes[273]"
+        },
+        {
+            "name": "nodes[274]"
+        },
+        {
+            "name": "nodes[275]"
+        },
+        {
+            "name": "nodes[276]"
+        },
+        {
+            "name": "nodes[277]"
+        },
+        {
+            "name": "nodes[278]"
+        },
+        {
+            "name": "nodes[279]"
+        },
+        {
+            "name": "nodes[280]"
+        },
+        {
+            "name": "nodes[281]"
+        },
+        {
+            "name": "nodes[282]"
+        },
+        {
+            "name": "nodes[283]"
+        },
+        {
+            "name": "nodes[284]"
+        },
+        {
+            "name": "nodes[285]"
+        },
+        {
+            "name": "nodes[286]"
+        },
+        {
+            "name": "nodes[287]"
+        },
+        {
+            "name": "nodes[288]"
+        },
+        {
+            "name": "nodes[289]"
+        },
+        {
+            "name": "nodes[290]"
+        },
+        {
+            "name": "nodes[291]"
+        },
+        {
+            "name": "nodes[292]"
+        },
+        {
+            "name": "nodes[293]"
+        },
+        {
+            "name": "nodes[294]"
+        },
+        {
+            "name": "nodes[295]"
+        },
+        {
+            "name": "nodes[296]"
+        },
+        {
+            "name": "nodes[297]"
+        },
+        {
+            "name": "nodes[298]"
+        },
+        {
+            "name": "nodes[299]"
+        },
+        {
+            "name": "nodes[300]"
+        },
+        {
+            "name": "nodes[301]"
+        },
+        {
+            "name": "nodes[302]"
+        },
+        {
+            "name": "nodes[303]"
+        },
+        {
+            "name": "nodes[304]"
+        },
+        {
+            "name": "nodes[305]"
+        },
+        {
+            "name": "nodes[306]"
+        },
+        {
+            "name": "nodes[307]"
+        },
+        {
+            "name": "nodes[308]"
+        },
+        {
+            "name": "nodes[309]"
+        },
+        {
+            "name": "nodes[310]"
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}
