@@ -1,7 +1,12 @@
+/* global vars */
+:root {
+    --purple: rgb(211, 135, 247);
+}
+
 /* scrollbar */
 * {
     scrollbar-width: thin;
-    scrollbar-color: rgb(211, 135, 247) #ffffff00;
+    scrollbar-color: var(--purple) #ffffff00;
 }
 
 *::-webkit-scrollbar {
@@ -14,7 +19,7 @@
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: rgb(211, 135, 247);
+    background-color: var(--purple);
     border-radius: 10px;
 }
 
@@ -38,28 +43,4 @@ p {
     text-align: center;
     font-size: 18px;
     margin-top: 10px;
-}
-
-/* Wavy Bar Styling */
-.wavy-bar {
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(
-        90deg, 
-        #ff6b6b, #f06595, #cc5de8, 
-        #845ef7, #5c7cfa, #339af0, 
-        #5c7cfa, #845ef7, #cc5de8, 
-        #f06595, #ff6b6b
-    );
-    background-size: 200% 100%;
-    animation: wave 2s linear infinite;
-}
-
-@keyframes wave {
-    0% {
-        background-position: 0% 0%;
-    }
-    100% {
-        background-position: 200% 0%;
-    }
 }
