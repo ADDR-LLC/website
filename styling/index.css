@@ -39,16 +39,17 @@ header {
     color: rgb(117, 116, 116);
     text-align: center;
     padding: 1em 0;
+    height: 2.2em;
 }
 
-footer {
+/* footer {
     background-color: #000000;
     color: rgb(117, 116, 116);
     text-align: center;
-    padding: 0.5em;
+    padding: 1em;
     font-size: 0.8em;
     height: 0em;
-}
+} */
 
 main {
     flex: 1;
@@ -139,7 +140,7 @@ iframe {
 /* Wavy Bar Styling */
 .wavy-bar {
     width: 100%;
-    height: 3px;
+    height: 1px;
     background: linear-gradient(
         90deg, 
         #ff6b6b, #f06595, #cc5de8, 
