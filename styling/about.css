@@ -1,11 +1,11 @@
 :root {
-    --purple: rgb(211, 135, 247);
+    --main: #70A1D7;
 }
 
 /* scrollbar */
 * {
     scrollbar-width: thin;
-    scrollbar-color: var(--purple) #ffffff00;
+    scrollbar-color: var(--main) #00000000;
 }
 
 *::-webkit-scrollbar {
@@ -18,7 +18,7 @@
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: var(--purple);
+    background-color: var(--main);
     border-radius: 10px;
 }
 
@@ -31,12 +31,12 @@ body {
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: #000000;
+    background-color: #ffffff;
     font-family: 'Roboto', sans-serif;
 }
 
 h1 {
-    color: #ffffff;
+    color: #000000;
     text-align: center;
     margin-top: 50px;
 }
@@ -52,11 +52,11 @@ h1 {
     padding: 20px;
     border: none;
     border-radius: 10px;
-    background-color: #272727;
+    background-color: #c7c7c7;
 }
 
 .info_box h2 {
-    color: #ffffff;
+    color: #000000;
     font-size: 24px;
 }
 
@@ -93,7 +93,7 @@ h1 {
 
 
 .info_box p {
-    color: #ffffff;
+    color: #000000;
     font-size: 18px;
     margin: 0;
 }

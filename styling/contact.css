@@ -1,11 +1,11 @@
 :root {
-    --purple: rgb(211, 135, 247);
+    --main: #70A1D7;
 }
 
 /* scrollbar */
 * {
     scrollbar-width: thin;
-    scrollbar-color: var(--purple) #ffffff00;
+    scrollbar-color: var(--main) #ffffff00;
 }
 
 *::-webkit-scrollbar {
@@ -18,7 +18,7 @@
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: var(--purple);
+    background-color: var(--main);
     border-radius: 10px;
 }
 
@@ -31,7 +31,7 @@ body {
     min-height: 100vh;
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    background-color: #000000;
+    background-color: #ffffff;
     color: rgb(117, 116, 116);
 }
 
@@ -55,13 +55,14 @@ form {
     width: 50%;
     margin: 0 auto;
     padding: 1em;
-    background: #1a1a1a;
+    background: #ffffff;
     border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 form h1 {
     margin-bottom: 1em;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .fullName {
@@ -90,17 +91,18 @@ input, textarea {
     box-sizing: border-box;
     margin-bottom: 1em;
     border-radius: 5px;
-    background: #333;
+    background: #b8b8b8;
     color: white;
 }
 
 textarea {
     resize: vertical;
+    min-height: 250px;
 }
 
 input[type="submit"] {
-    background: #444;
-    color: white;
+    background: #b8d2ee;
+    color: rgb(0, 0, 0);
     /* width: fit-content; can remove this if we want the button to span the whole width of the form */
     border: none;
     padding: 0.7em;
@@ -111,5 +113,5 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background: var(--purple);
+    background: var(--main);
 }

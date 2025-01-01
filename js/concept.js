@@ -10,7 +10,7 @@ renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 // setting the size of the renderer and clearing the color
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setClearColor(0x000000);
+renderer.setClearColor(0xffffff);
 
 // setting the pixel ratio of the renderer for different devices
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -54,7 +54,7 @@ scene.add(directionalLight);
 
 // adding a cube to the scene
 const cubeGeometry = new THREE.BoxGeometry();
-const cubeMaterial = new THREE.MeshStandardMaterial({color: 0x00ff00});
+const cubeMaterial = new THREE.MeshStandardMaterial({color: 0x70A1D7});
 const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
 cube.position.set(0, 1, 0);
 cube.castShadow = true;
