@@ -98,7 +98,9 @@ animate();
 
 
 
-// JAVASCRIPT CODE FOR SCENE  
+// JAVASCRIPT CODE FOR SCENE 
+const zoomInButton = document.getElementById('zoom_in');
+const zoomOutButton = document.getElementById('zoom_out');
 
 // Listener for window resize
 window.addEventListener('resize', () => {
@@ -110,10 +112,6 @@ window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-
-// scene buttons
-const zoomInButton = document.getElementById('zoom_in');
-const zoomOutButton = document.getElementById('zoom_out');
 
 // function for smooth zoom 
 const smoothZoom = (targetZoom) => {
@@ -131,7 +129,6 @@ const smoothZoom = (targetZoom) => {
   animateZoom();
 };
 
-
 zoomInButton.addEventListener('click', () => {
   smoothZoom(camera.zoom + 0.3);
 });
@@ -139,3 +136,4 @@ zoomInButton.addEventListener('click', () => {
 zoomOutButton.addEventListener('click', () => {
   smoothZoom(camera.zoom - 0.3);
 });
+
