@@ -23,7 +23,6 @@
     border-radius: 10px;
 }
 
-
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -65,38 +64,62 @@ p {
     background-color: var(--banner);
 }
 
-#scene_controls {
+/* #scene_controls {
     display: flex;
     gap: 10px;
-}
+} */
 
 /* For Parts banner */
 #parts_list {
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
     margin: 20px;
+    overflow-x: scroll;
+    white-space: nowrap;
+    scrollbar-width: none;
+}
+
+/* for scrollbar */
+#parts_list::-webkit-scrollbar {
+    display: none;
 }
 
 #parts_list ul {
-    display: flex;
+    display: inline-block;
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
 #parts_list li {
+    display: inline-block;
     margin: 0 10px;
     padding: 10px;
     background-color: none;
-    border: var(--banner) 2px solid;
+    border: var(--main) 2px solid;
     border-radius: 5px;
     color: #000;
     cursor: pointer;
-    transition: border 0.3s ease;
+    transition: border 0.4s ease, max-height 0.4s ease, padding 0.4s ease;
+    overflow-y: hidden;
 }
 
 #parts_list li:hover {
     border: var(--main) 2px solid;
 }
 
+#parts_list li.expanded {
+    max-height: 100px;
+    padding: 20px;
+    border: var(--main) 2px solid;
+}
+
+#parts_list li .extra-content {
+    display: none;
+}
+
+#parts_list li.expanded .extra-content {
+    display: block;
+    margin-top: 10px;
+}
