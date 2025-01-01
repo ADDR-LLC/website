@@ -25,7 +25,7 @@ document.body.appendChild(renderer.domElement);
 const scene = new THREE.Scene();
 
 // creating a camera
-const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
+const camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 1, 1000);
 camera.position.set(4,5,11);
 camera.lookAt(0, 0, 0);
 
@@ -41,16 +41,19 @@ controls.autoRotate = false;
 controls.target = new THREE.Vector3(0, 1, 0);
 controls.update();
 
-// ambient light
-const ambientLight = new THREE.AmbientLight(0xffffff, 1);
-scene.add(ambientLight);
-
-// directional light
-const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-directionalLight.position.set(5, 10, 7.5);
-directionalLight.castShadow = true;
-scene.add(directionalLight);
-
+// adding a light to the scene, still experimental
+const light = new THREE.DirectionalLight(0xffffff, 1);
+light.position.set(0, 10, 0);
+light.castShadow = true;
+light.shadow.mapSize.width = 2048;
+light.shadow.mapSize.height = 2048;
+light.shadow.camera.top = 15;
+light.shadow.camera.right = 15;
+light.shadow.camera.bottom = -15;
+light.shadow.camera.left = -15;
+light.shadow.camera.near = 0.1;
+light.shadow.camera.far = 40;
+scene.add(light);
 
 // adding a cube to the scene, this is placeholder
 // const cubeGeometry = new THREE.BoxGeometry();
@@ -74,7 +77,7 @@ scene.add(directionalLight);
 const fbxLoader = new FBXLoader();
 fbxLoader.load('../models/drone-M30.fbx', (fbx) => {
   fbx.position.set(0, 2, 0);
-  fbx.scale.set(0.06, 0.06, 0.06);
+  fbx.scale.set(0.04, 0.04, 0.04);
   fbx.traverse((child) => {
     if (child.isMesh) {
       child.castShadow = true;
@@ -85,7 +88,7 @@ fbxLoader.load('../models/drone-M30.fbx', (fbx) => {
 });
 
 
-// necessary animate functions
+// necessary animate functions for the scene
 function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
@@ -95,6 +98,8 @@ animate();
 
 
 
+// JAVASCRIPT CODE FOR SCENE  
+
 // Listener for window resize
 window.addEventListener('resize', () => {
   // camera aspect ratio and projection matrix
@@ -103,4 +108,45 @@ window.addEventListener('resize', () => {
 
   // updating renderer size
   renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+
+// scene buttons
+const zoomInButton = document.createElement('button');
+zoomInButton.innerText = 'Zoom In';
+zoomInButton.style.position = 'absolute';
+zoomInButton.style.top = '10px';
+zoomInButton.style.left = '10px';
+document.body.appendChild(zoomInButton);
+
+const zoomOutButton = document.createElement('button');
+zoomOutButton.innerText = 'Zoom Out';
+zoomOutButton.style.position = 'absolute';
+zoomOutButton.style.top = '40px';
+zoomOutButton.style.left = '10px';
+document.body.appendChild(zoomOutButton);
+
+// function for smooth zoom 
+const smoothZoom = (targetZoom) => {
+  const zoomStep = (targetZoom - camera.zoom) / 20; // can change the speed
+  const animateZoom = () => {
+    if (Math.abs(targetZoom - camera.zoom) > Math.abs(zoomStep)) {
+      camera.zoom += zoomStep;
+      camera.updateProjectionMatrix();
+      requestAnimationFrame(animateZoom);
+    } else {
+      camera.zoom = targetZoom;
+      camera.updateProjectionMatrix();
+    }
+  };
+  animateZoom();
+};
+
+
+zoomInButton.addEventListener('click', () => {
+  smoothZoom(camera.zoom + 0.3);
+});
+
+zoomOutButton.addEventListener('click', () => {
+  smoothZoom(camera.zoom - 0.3);
 });
