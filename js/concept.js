@@ -1,6 +1,7 @@
 import * as THREE from 'three'; // main import
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js'; // for loading the gltf model
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js'; // for adding orbiting controls to the scene
+import { FBXLoader } from 'three/addons/loaders/FBXLoader.js'; // for fbx model loading
 
 // this creates webgl renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -17,7 +18,6 @@ renderer.setPixelRatio(window.devicePixelRatio);
 
 // adding the renderer to the body of the document
 document.body.appendChild(renderer.domElement);
-
 
 
 
@@ -52,21 +52,38 @@ directionalLight.castShadow = true;
 scene.add(directionalLight);
 
 
-// adding a cube to the scene
-const cubeGeometry = new THREE.BoxGeometry();
-const cubeMaterial = new THREE.MeshStandardMaterial({color: 0x70A1D7});
-const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-cube.position.set(0, 1, 0);
-cube.castShadow = true;
-cube.receiveShadow = true;
-scene.add(cube);
+// adding a cube to the scene, this is placeholder
+// const cubeGeometry = new THREE.BoxGeometry();
+// const cubeMaterial = new THREE.MeshStandardMaterial({color: 0x70A1D7});
+// const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+// cube.position.set(0, 1, 0);
+// cube.castShadow = true;
+// cube.receiveShadow = true;
+// scene.add(cube);
 
+
+// if we need to load a gltf model, should use this format cause it is more opptimized for web
 // const loader = new GLTFLoader().setPath('G:\addr-website\website\models');
 // loader.load('result.gltf', (gltf) => {
 //     const mesh = gltf.scene;
 //     mesh.position.set(0, 1.05, -1);
 //     scene.add(mesh);
 // });
+
+// adding the fbx model to the scene
+const fbxLoader = new FBXLoader();
+fbxLoader.load('../models/drone-M30.fbx', (fbx) => {
+  fbx.position.set(0, 2, 0);
+  fbx.scale.set(0.06, 0.06, 0.06);
+  fbx.traverse((child) => {
+    if (child.isMesh) {
+      child.castShadow = true;
+      child.receiveShadow = true;
+    }
+  });
+  scene.add(fbx);
+});
+
 
 // necessary animate functions
 function animate() {
