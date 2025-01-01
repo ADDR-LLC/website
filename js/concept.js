@@ -54,7 +54,7 @@ scene.add(directionalLight);
 
 // adding a cube to the scene
 const cubeGeometry = new THREE.BoxGeometry();
-const cubeMaterial = new THREE.MeshStandardMaterial({color: 0x00ff00});
+const cubeMaterial = new THREE.MeshStandardMaterial({color: 0x70A1D7});
 const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
 cube.position.set(0, 1, 0);
 cube.castShadow = true;
