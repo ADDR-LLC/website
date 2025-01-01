@@ -112,19 +112,8 @@ window.addEventListener('resize', () => {
 
 
 // scene buttons
-const zoomInButton = document.createElement('button');
-zoomInButton.innerText = 'Zoom In';
-zoomInButton.style.position = 'absolute';
-zoomInButton.style.top = '10px';
-zoomInButton.style.left = '10px';
-document.body.appendChild(zoomInButton);
-
-const zoomOutButton = document.createElement('button');
-zoomOutButton.innerText = 'Zoom Out';
-zoomOutButton.style.position = 'absolute';
-zoomOutButton.style.top = '40px';
-zoomOutButton.style.left = '10px';
-document.body.appendChild(zoomOutButton);
+const zoomInButton = document.getElementById('zoom_in');
+const zoomOutButton = document.getElementById('zoom_out');
 
 // function for smooth zoom 
 const smoothZoom = (targetZoom) => {
