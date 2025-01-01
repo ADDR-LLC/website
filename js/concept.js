@@ -101,6 +101,7 @@ animate();
 // JAVASCRIPT CODE FOR SCENE 
 // const zoomInButton = document.getElementById('zoom_in');
 // const zoomOutButton = document.getElementById('zoom_out');
+const scrollToTopButton = document.getElementById('scrollToTopButton');
 
 // Listener for window resize
 window.addEventListener('resize', () => {
@@ -140,5 +141,26 @@ const smoothZoom = (targetZoom) => {
 document.querySelectorAll('#parts_list li').forEach(item => {
   item.addEventListener('click', () => {
       item.classList.toggle('expanded');
+  });
+});
+
+const toggleScrollToTopButton = () => {
+  if (window.scrollY > 100) { // Show button after scrolling down 100px
+      scrollToTopButton.style.display = 'block';
+  } else {
+      scrollToTopButton.style.display = 'none';
+  }
+};
+
+// Initial check
+toggleScrollToTopButton();
+
+// Add scroll event listener
+window.addEventListener('scroll', toggleScrollToTopButton);
+
+scrollToTopButton.addEventListener('click', () => {
+  window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
   });
 });
