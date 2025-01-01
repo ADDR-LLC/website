@@ -10,7 +10,7 @@ renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 // setting the size of the renderer and clearing the color
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setClearColor(0x000000);
+renderer.setClearColor(0xffffff);
 
 // setting the pixel ratio of the renderer for different devices
 renderer.setPixelRatio(window.devicePixelRatio);

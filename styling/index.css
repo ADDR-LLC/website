@@ -1,6 +1,6 @@
 /* global vars */
 :root {
-    --purple: rgb(211, 135, 247);
+    --main: #70A1D7;
 }
 
 /* scrollbar, everything disabled for clean look */
@@ -31,11 +31,11 @@ body {
     min-height: 100vh;
     margin: 0;
     font-family: 'SF Pro', sans-serif;
-    background-color: #000000;
+    background-color: #ffffff;
 }
 
 header {
-    background-color: #000000;
+    background-color: #ffffff;
     color: rgb(117, 116, 116);
     text-align: center;
     padding: 1em 0;
@@ -82,7 +82,7 @@ header nav ul {
 }
 
 header nav ul li button {
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     background-color: transparent;
     text-decoration: none;
     border: none;
@@ -94,7 +94,7 @@ header nav ul li button {
 }
 
 header nav ul li:hover button {
-    color: var(--purple);
+    color: var(--main);
 }
 
 /* below is if we want different color buttons for each of the pages in the navbar */
@@ -132,24 +132,23 @@ header h2 {
 
 /* iframe styling */
 iframe {
-    flex: 1;
+    height: 100vh;
     border: none;
-    height: 100%;
+    z-index: 1;
 }
 
 /* Wavy Bar Styling */
 .wavy-bar {
     width: 100%;
-    height: 1px;
+    height: 3px;
     background: linear-gradient(
         90deg, 
-        #ff6b6b, #f06595, #cc5de8, 
-        #845ef7, #5c7cfa, #339af0, 
-        #5c7cfa, #845ef7, #cc5de8, 
-        #f06595, #ff6b6b
+        #70A1D7, #3295ff, #A1DE93, #4ff32a, #A1DE93, #3295ff, #70A1D7
     );
     background-size: 200% 100%;
-    animation: wave 4s linear infinite;
+    animation: wave 5s linear infinite;
+    z-index: 2;
+    position: relative;
 }
 
 @keyframes wave {
