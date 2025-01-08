@@ -62,6 +62,7 @@ p {
     align-items: center;
     padding: 10px;
     background-color: var(--banner);
+    box-shadow: #000000;
 }
 
 /* #scene_controls {
@@ -97,31 +98,36 @@ p {
     margin: 0 10px;
     padding: 10px;
     background-color: none;
-    border: var(--main) 2px solid;
+    border: var(--banner) 2px solid;
     border-radius: 5px;
     color: #000;
     cursor: pointer;
-    transition: border 0.4s ease, max-height 0.4s ease, padding 0.4s ease;
+    transition: border 0.3s ease-out, max-height 0.3s ease-out, padding 0.3s ease-out;
     overflow-y: hidden;
+    max-width: fit-content;
+    word-wrap: break-word;
 }
 
 #parts_list li:hover {
-    border: var(--main) 2px solid;
+    border-bottom: var(--main) 2px solid;
 }
 
 #parts_list li.expanded {
-    max-height: 100px;
+    max-height: 400px;
     padding: 20px;
     border: var(--main) 2px solid;
 }
 
 #parts_list li .extra-content {
     display: none;
+    word-wrap: break-word;
 }
 
 #parts_list li.expanded .extra-content {
     display: block;
     margin-top: 10px;
+    max-width: fit-content; /* this is a bandaid fix, it should automatically word wrap based on the set width we have defined */
+    word-wrap: break-word;
 }
 
 #scrollToTopButton {

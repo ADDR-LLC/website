@@ -140,12 +140,17 @@ const smoothZoom = (targetZoom) => {
 
 document.querySelectorAll('#parts_list li').forEach(item => {
   item.addEventListener('click', () => {
-      item.classList.toggle('expanded');
+    const isExpanded = item.classList.toggle('expanded');
+    document.querySelectorAll('#parts_list li').forEach(otherItem => {
+      if (otherItem !== item) {
+        otherItem.style.display = isExpanded ? 'none' : 'inline-block';
+      }
+    });
   });
 });
 
 const toggleScrollToTopButton = () => {
-  if (window.scrollY > 100) { // Show button after scrolling down 100px
+  if (window.scrollY > 70) { // Show button after scrolling down 70px, as safety 
       scrollToTopButton.style.display = 'block';
   } else {
       scrollToTopButton.style.display = 'none';
