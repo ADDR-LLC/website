@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <form action="/submit_contact" method="post">
+    <form id="contactForm">
         <div class="contactTitle">
             <h1>Contact Us</h1>
         </div>
@@ -24,12 +24,12 @@
     
         <input type="email" id="userEmail" name="userEmail" required placeholder="Email : you@addr.com"><br>
         
-        <!-- <label for="subject">Subject:</label> -->
         <input type="text" id="subject" name="subject" required placeholder="Subject"><br>
         
-        <!-- <label for="description">Description:</label>] -->
         <textarea id="description" name="description" rows="4" cols="50" required placeholder="Type the description of your inquiry here..."></textarea><br>
         <input type="submit" value="Submit">
     </form>
+
+    <script src="../js/contact.js"></script>
 </body>
 </html>
