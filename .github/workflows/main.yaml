@@ -26,5 +26,4 @@ jobs:
           server: ${{ secrets.shared_ip }}
           username: ${{ secrets.sftp_username }}
           password: ${{ secrets.sftp_password }}
-          server-dir: '/home/addr24/public_html/'
-          local-dir: './'
+          local-dir: '/public_html'
