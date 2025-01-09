@@ -1,0 +1,29 @@
+on:
+  push:
+    branches:
+      - main
+
+name: 🚀 Deploy Website on Push
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get Latest Code
+        uses: actions/checkout@v4
+
+      - name: Update BASE_URL in all .env files
+        run: |
+          # Find all .env files in the repository, this is most likely not going to be used
+          find . -type f -name ".env" | while read env_file; do
+            echo "Updating $env_file"
+            sed -i 's/^BASE_URL=.*/BASE_URL="localhost"/' "$env_file"
+          done
+
+      - name: 📂 Sync Files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.shared_ip }}
+          username: ${{ secrets.sftp_username }}
+          password: ${{ secrets.sftp_password }}
+          path: '/home/addr24/public_html'
