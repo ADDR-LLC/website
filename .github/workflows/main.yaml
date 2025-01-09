@@ -27,4 +27,4 @@ jobs:
           username: ${{ secrets.sftp_username }}
           password: ${{ secrets.sftp_password }}
           server-dir: '/'
-          local-dir: './public_html/'
+          local-dir: 'public_html/'
