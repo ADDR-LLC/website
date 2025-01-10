@@ -46,18 +46,29 @@ main {
     }
 }
 
-
 /* Other stuff */
+#contactTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+
+#contactDesc {
+    margin-bottom: 50px;
+}
+
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
+    width: 70%;
+    min-width: 400px;
     margin: 0 auto;
     padding: 1em;
     background: #ffffff;
     border-radius: 10px; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
 }
 
 form h1 {
@@ -77,33 +88,48 @@ form h1 {
     margin: 0.5em 0;
 }
 
-label {
-    margin-bottom: .5em;
-    color: white;
-    display: block;
-}
 
-input, textarea {
+/* for text boxes */
+input:not([type="submit"]), 
+textarea {
     border: none;
+    border-bottom: 1px solid rgb(0, 0, 0); /* only bottom border, transparent by default */
     padding: .5em;
     font-size: 1em;
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 1em;
-    border-radius: 5px;
-    background: #b8b8b8;
-    color: white;
+    border-radius: 0;
+    background: transparent;
+    color: rgb(0, 0, 0);
+    transition: border-bottom-color 0.2s ease;
+}
+
+input:not([type="submit"]):hover,
+textarea:hover {
+    border-bottom-color: var(--main);
+}
+
+/* when focused */
+input:not([type="submit"]):focus,
+textarea:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: var(--main);
 }
 
 textarea {
     resize: vertical;
     min-height: 250px;
+    font-family: 'Roboto', sans-serif;
 }
 
+
+/* for button */
 input[type="submit"] {
     background: #b8d2ee;
     color: rgb(0, 0, 0);
-    /* width: fit-content; can remove this if we want the button to span the whole width of the form */
+    width: 100%;
     border: none;
     padding: 0.7em;
     font-size: 1em;
