@@ -85,6 +85,11 @@ fbxLoader.load('../models/drone-M30.fbx', (fbx) => {
     }
   });
   scene.add(fbx);
+  document.getElementById('progress-container').style.display = 'none';
+}, (xhr) => {
+  console.log(`loading ${xhr.loaded / xhr.total * 100}%`);
+}, (error) => {
+  console.error(error);
 });
 
 
