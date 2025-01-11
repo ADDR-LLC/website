@@ -75,6 +75,8 @@ scene.add(light);
 
 // adding the fbx model to the scene
 const fbxLoader = new FBXLoader();
+const progressContainer = document.getElementById('progress-container'); // for spinner
+
 fbxLoader.load('../models/drone-M30.fbx', (fbx) => {
   fbx.position.set(0, 2, 0);
   fbx.scale.set(0.04, 0.04, 0.04);
@@ -85,12 +87,16 @@ fbxLoader.load('../models/drone-M30.fbx', (fbx) => {
     }
   });
   scene.add(fbx);
-  document.getElementById('progress-container').style.display = 'none';
-}, (xhr) => {
-  console.log(`loading ${xhr.loaded / xhr.total * 100}%`);
-}, (error) => {
-  console.error(error);
+    if (progressContainer) {
+      progressContainer.style.display = 'none';
+    }
+  }, (xhr) => {
+    // for debug model loading percent, can maybe show the amt model has loaded in the loader
+    // console.log(`loading ${xhr.loaded / xhr.total * 100}%`);
+  }, (error) => {
+    console.error(error);
 });
+
 
 
 // necessary animate functions for the scene
