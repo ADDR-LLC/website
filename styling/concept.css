@@ -1,6 +1,7 @@
 :root {
     --main: #70A1D7;
     --banner: #f0f0f0;
+    --green: #A1DE93;
 }
 
 /* scrollbar */
@@ -156,12 +157,22 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 10; /* needs to be higher than iframe */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#progress-container p {
+    color: grey;
+    font-size: smaller;
+    margin-top: 15px;
+    justify-content: center;
+    align-items: center;
 }
 
 /* all below is for the custom spinner */
 .loader  {
-    animation: rotate 1s infinite;  
+    animation: rotate 3s infinite;  
     height: 50px;
     width: 50px;
     z-index: 11;
@@ -177,16 +188,16 @@ p {
 }
 
 .loader:before {
-    animation: ball1 1s infinite;  
-    background-color: #cb2025;
-    box-shadow: 30px 0 0 #f8b334;
+    animation: ball1 3s infinite;  
+    background-color: var(--main);
+    box-shadow: 30px 0 0 var(--main);
     margin-bottom: 10px;
 }
 
 .loader:after {
-    animation: ball2 1s infinite; 
-    background-color: #00a096;
-    box-shadow: 30px 0 0 #97bf0d;
+    animation: ball2 3s infinite; 
+    background-color: var(--green);
+    box-shadow: 30px 0 0 var(--green);
 }
 
 @keyframes rotate {
@@ -204,34 +215,36 @@ p {
     }
 }
 
+/* top right ball */
 @keyframes ball1 {
     0% {
-        box-shadow: 30px 0 0 #f8b334;
+        box-shadow: 30px 0 0 var(--green);
     }
     50% {
-        box-shadow: 0 0 0 #f8b334;
+        box-shadow: 0 0 0 var(--green);
         margin-bottom: 0;
         -webkit-transform: translate(15px,15px);
         -moz-transform: translate(15px, 15px);
     }
     100% {
-        box-shadow: 30px 0 0 #f8b334;
+        box-shadow: 30px 0 0 var(--green);
         margin-bottom: 10px;
     }
 }
 
+/* bottom right ball */
 @keyframes ball2 {
     0% {
-        box-shadow: 30px 0 0 #97bf0d;
+        box-shadow: 30px 0 0 var(--main);
     }
     50% {
-        box-shadow: 0 0 0 #97bf0d;
+        box-shadow: 0 0 0 var(--main);
         margin-top: -20px;
         -webkit-transform: translate(15px,15px);
         -moz-transform: translate(15px, 15px);
     }
     100% {
-        box-shadow: 30px 0 0 #97bf0d;
+        box-shadow: 30px 0 0 var(--main);
         margin-top: 0;
     }
 }
