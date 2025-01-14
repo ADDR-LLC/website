@@ -136,6 +136,11 @@ body p {
     text-align: center;
 }
 
+.team_member img {
+    width: auto;
+    max-height: 50px;
+}
+
 /* for fade-in anim */
 .fade-in {
     opacity: 0;
