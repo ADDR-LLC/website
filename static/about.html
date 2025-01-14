@@ -11,36 +11,55 @@
     <link rel="stylesheet" href="../styling/about.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
 </head>
 
 <body>
-    <h1>About ADDR</h1>
+    <!-- <h1>About ADDR</h1> -->
+
+    <div class="info_container fade-in">
+        <div class="info_box" id="mission_box">
+            <div class="mission_content">
+                <video id="mission_video" src="../vectors/goal.webm" loop autoplay muted></video>
+                <div>
+                    <h2>Our Mission</h2>
+                    <p>Drones have seen rapid adoption in industries like agriculture, 
+                        videography, and logistics. We as ADDR see drones having potential 
+                        in life-saving scenarios, aiming for the greatest possible impact 
+                        within disaster response and search and rescue operations.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info_box" id="vision_box">
+            <div class="vision_content">
+                <video id="vision_video" src="../vectors/vision.webm" loop autoplay muted></video>
+                <div>
+                    <h2>Our Vision</h2>
+                    <p>Leveraging AI advancements and powerful hardware, 
+                        we envision a flexible network of autonomous drones 
+                        working with a master AI system to rapidly access 
+                        hard-to-reach areas and streamline emergency response 
+                        and communication. Our ultimate goal is to reduce response 
+                        times and make rescue operations more accurate and efficient, 
+                        and remove the possibility of any type of error. In the future, 
+                        we plan to expand into the different horizons of the drone technology.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- for some reason, you cannot have an id linked to a fade-in class for it to work correctly -->
+    <div class="team_fade fade-in"> 
+        <div class="info_box" id="team_box">
+            <h2></i> Meet Our Team</h2>
+            <p>Our team consists of dedicated professionals with expertise in AI, robotics, and emergency response. We are committed to making a difference in the world through innovative drone technology.</p>
+        </div>
+    </div>
     
-    <div class="info_box" id="mission_box">
-        <h2><i class="fas fa-bullseye fa-fade"></i> Our Mission</h2>
-        <p>Drones have seen rapid adoption in industries like agriculture, 
-            videography, and logistics. We as ADDR see drones having potential 
-            in life-saving scenarios, aiming for the greatest possible impact 
-            within disaster response and search and rescue operations.</p>
-    </div>
-
-    <div class="info_box" id="vision_box">
-        <h2><i class="fas fa-eye fa-fade"></i> Our Vision</h2>
-        <p>Leveraging AI advancements and powerful hardware, 
-            we envision a flexible network of autonomous drones 
-            working with a master AI system to rapidly access 
-            hard-to-reach areas and streamline emergency response 
-            and communication. Our ultimate goal is to reduce response 
-            times and make rescue operations more accurate and efficient, 
-            and remove the possibility of any type of error. In the future, 
-            we plan to expand into the different horizons of the drone technology.</p>
-    </div>
-
-    <div class="info_box" id="team_box">
-        <h2><i class="fas fa-users fa-fade"></i> Meet Our Team</h2>
-        <p>Our team consists of dedicated professionals with expertise in AI, robotics, and emergency response. We are committed to making a difference in the world through innovative drone technology.</p>
-    </div>
-    <footer>
+    <script src="../js/about.js"></script>
+    <footer class="fade-in">
         <p>© Advanced Drone Development and Reasearch</p>
     </footer>
 </body>
