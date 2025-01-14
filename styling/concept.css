@@ -100,10 +100,10 @@ p {
     padding: 10px;
     background-color: none;
     border: var(--banner) 2px solid;
-    border-radius: 5px;
+    border-radius: 0px; /* init */
     color: #000;
     cursor: pointer;
-    transition: border 0.3s ease-out, max-height 0.3s ease-out, padding 0.3s ease-out;
+    transition: border 0.3s ease-out, max-height 0.3s ease-out, transform 0.3s ease;
     overflow-y: hidden;
     max-width: fit-content;
     word-wrap: break-word;
@@ -115,8 +115,9 @@ p {
 
 #parts_list li.expanded {
     max-height: 400px;
-    padding: 20px;
+    transform: scale3d(1.008, 1.008, 1.008);
     border: var(--main) 2px solid;
+    border-radius: 5px;
 }
 
 #parts_list li .extra-content {
