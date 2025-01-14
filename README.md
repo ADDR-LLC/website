@@ -13,5 +13,5 @@ Open this link in your preferred browser. Make sure to save your changes in your
 | Element | Author       | Source Link                                                                 |
 |---------|--------------|-----------------------------------------------------------------------------|
 | Model Spinner | Iván Villamil | [Source](https://www.sliderrevolution.com/resources/css-loaders/) |
-| Goal GIF | Spencer Lalonde | [Source](https://lottiefiles.com/free-animation/target-f3qmaV0uV0) |
-| Rocket GIF | Motion Works | [Source]https://lottiefiles.com/free-animation/rocket-launch-E2fg4zXD59 |
+| Goal GIF<br>Goal animated icons created by Freepik - Flaticon | Flat Icon | [Source](https://www.flaticon.com/free-animated-icons/goal) |
+| Rocket GIF<br>Rocket animated icons created by Freepik - Flaticon | Flat Icon | [Source](https://www.flaticon.com/free-animated-icons/rocket) |

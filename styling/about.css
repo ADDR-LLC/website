@@ -88,25 +88,52 @@ body p {
     margin: 0;
 }
 
-.mission_content, .vision_content {
+#header-container {
     display: flex;
     align-items: center;
-    gap: 40px;
 }
 
-.mission_content video, .vision_content video {
-    max-width: 300px;
-    height: auto;
+#header-container img {
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+
+}
+
+#header-container h2 {
+    margin: 0;
+}
+
+.mission_content, .vision_content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
 }
 
 #mission_box, #vision_box, #team_box {
     border: 2px solid transparent;
-    transition: border 0.3s ease;
+    transition: border 0.3s ease, transform 0.3s ease;
     flex: 1;
 }
 
 #mission_box:hover, #vision_box:hover, #team_box:hover {
-    border: 2px solid #845ef7;
+    border: 2px solid var(--main);
+    transform: scale3d(1.008, 1.008, 1.008);
+}
+
+.team_members {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.team_member {
+    flex: 1 1 200px;
+    max-width: 300px;
+    text-align: center;
 }
 
 /* for fade-in anim */
