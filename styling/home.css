@@ -31,13 +31,22 @@ body {
     height: 80vh;
     font-family: 'Roboto', sans-serif;
     position: relative;
+    overflow-x: hidden; /* disable scroll */
     z-index: 1;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    z-index: -1;
+    position: absolute;
 }
 
 h1 {
     color: #000000;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 350px;
+    z-index: 1;
 }
 
 p {
@@ -45,11 +54,15 @@ p {
     text-align: center;
     font-size: 18px;
     margin-top: 10px;
-    font-family: system-ui;
+    z-index: 1;
 }
 
-h1, p{
+h1, p {
     animation: slideIn 2s ease-out;
+}
+
+img{
+    animation: fadeIn 2s ease-out;
 }
 
 #prod_video_render {
@@ -63,9 +76,20 @@ h1, p{
 }
 
 
+@keyframes fadeIn {
+    from {
+        /* transform: translateY(-100%); */
+        opacity: 0;
+    }
+    to {
+        /* transform: translateY(0); */
+        opacity: 1;
+    }
+}
+
 @keyframes slideIn {
     from {
-        transform: translateY(-100%);
+        transform: translateY(-50%);
         opacity: 0;
     }
     to {
