@@ -1,6 +1,5 @@
 import { TechSolutionsHeroSection } from "@/components/ui/tech-solutions-hero-section";
 import { AboutSection } from "@/components/about-section";
-import { BlogSection } from "@/components/blog-section";
 
 export default function Home() {
   return (
@@ -10,8 +9,6 @@ export default function Home() {
       </section>
       
       <AboutSection />
-      
-      <BlogSection />
     </main>
   );
 }

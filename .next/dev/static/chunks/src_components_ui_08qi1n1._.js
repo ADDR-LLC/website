@@ -108,15 +108,15 @@ var _s = __turbopack_context__.k.signature();
 function TechSolutionsHeroSection(t0) {
     _s();
     const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(26);
-    if ($[0] !== "c34bc5255edf00b61a243205569f7dc606697f646a4e1df840d4ba2e545ebe92") {
+    if ($[0] !== "37f3595718aeec869958ea1bd392410cbf3bf96207fc9aafe6c30095c0b7a816") {
         for(let $i = 0; $i < 26; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "c34bc5255edf00b61a243205569f7dc606697f646a4e1df840d4ba2e545ebe92";
+        $[0] = "37f3595718aeec869958ea1bd392410cbf3bf96207fc9aafe6c30095c0b7a816";
     }
     const { title: t1, subtitle: t2, statLabel: t3, statValue: t4 } = t0;
     const title = t1 === undefined ? "ADDR" : t1;
-    const subtitle = t2 === undefined ? "Advanced Drone Development & Research" : t2;
+    const subtitle = t2 === undefined ? "Advanced Design Development & Research" : t2;
     const statLabel = t3 === undefined ? "SMARTER SYSTEMS" : t3;
     const statValue = t4 === undefined ? "FOR SMARTER SOLUTIONS" : t4;
     const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
