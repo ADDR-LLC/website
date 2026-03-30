@@ -22,11 +22,11 @@ var _s = __turbopack_context__.k.signature();
 function Navbar() {
     _s();
     const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(22);
-    if ($[0] !== "7c96910eafea49611a8b95191cc321cad3935f8f32daa529850c43e5a6d0145e") {
+    if ($[0] !== "c7a9e2f357bf3f1df30a46826f3b2044ceecb88ed270bc23dda4397accc6bac9") {
         for(let $i = 0; $i < 22; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "7c96910eafea49611a8b95191cc321cad3935f8f32daa529850c43e5a6d0145e";
+        $[0] = "c7a9e2f357bf3f1df30a46826f3b2044ceecb88ed270bc23dda4397accc6bac9";
     }
     const [isOpen, setIsOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [activeSection, setActiveSection] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("home");
@@ -45,7 +45,7 @@ function Navbar() {
             },
             {
                 name: "Blog",
-                href: "/#blog",
+                href: "/blog",
                 id: "blog"
             }
         ];

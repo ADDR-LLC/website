@@ -38,7 +38,7 @@ function Navbar() {
         },
         {
             name: "Blog",
-            href: "/#blog",
+            href: "/blog",
             id: "blog"
         }
     ];
