@@ -21,11 +21,16 @@ export default async function AdminBlogPage() {
       date: String(formData.get('date') ?? ''),
       excerpt: String(formData.get('excerpt') ?? ''),
       tags: String(formData.get('tags') ?? ''),
-      pythonPackages: formData
-        .getAll('pythonPackages')
-        .map((pkg) => String(pkg).trim())
-        .filter(Boolean)
-        .join(', '),
+      pythonPackages: Array.from(new Set([
+        ...formData
+          .getAll('pythonPackages')
+          .map((pkg) => String(pkg).trim())
+          .filter(Boolean),
+        ...String(formData.get('pythonPackagesExtra') ?? '')
+          .split(',')
+          .map((pkg) => pkg.trim())
+          .filter(Boolean),
+      ])).join(', '),
       content: String(formData.get('content') ?? ''),
     };
 
@@ -101,6 +106,16 @@ export default async function AdminBlogPage() {
               </div>
               <p className="text-xs text-[#888888]">Readers can run `python-run` blocks with these libraries preloaded.</p>
             </fieldset>
+
+
+            <label className="space-y-1 md:col-span-2">
+              <span className="text-sm text-[#a0a0a5]">Additional Python libraries (optional, comma-separated)</span>
+              <input
+                name="pythonPackagesExtra"
+                placeholder="sympy, seaborn"
+                className="w-full rounded-md bg-black border border-[#2C2C2E] px-3 py-2"
+              />
+            </label>
 
             <label className="space-y-1 md:col-span-2">
               <span className="text-sm text-[#a0a0a5]">Content (Markdown)</span>

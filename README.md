@@ -48,6 +48,15 @@ set BLOG_ADMIN_SESSION_SECRET=replace-with-long-random-secret
 npm run dev
 ```
 
+
+Linux/macOS (bash/zsh):
+
+```bash
+export BLOG_ADMIN_PASSWORD="replace-with-strong-password"
+export BLOG_ADMIN_SESSION_SECRET="replace-with-long-random-secret"
+npm run dev
+```
+
 Then:
 
 1. Open `/admin/login`
@@ -98,7 +107,7 @@ print(np.arange(5))
 
 ### Choosing libraries for each post
 
-In the admin create/edit form, select the Python libraries needed for that post (currently: `numpy`, `matplotlib`, `pandas`, `scipy`).
+In the admin create/edit form, select common Python libraries (`numpy`, `matplotlib`, `pandas`, `scipy`) and optionally add extra libraries in the “Additional Python libraries” field.
 
 Those selections are saved in post frontmatter as `pythonPackages`, for example:
 

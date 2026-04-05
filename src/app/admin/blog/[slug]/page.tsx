@@ -26,11 +26,16 @@ export default async function EditPostPage({ params }: { params: Promise<{ slug:
       date: String(formData.get('date') ?? ''),
       excerpt: String(formData.get('excerpt') ?? ''),
       tags: String(formData.get('tags') ?? ''),
-      pythonPackages: formData
-        .getAll('pythonPackages')
-        .map((pkg) => String(pkg).trim())
-        .filter(Boolean)
-        .join(', '),
+      pythonPackages: Array.from(new Set([
+        ...formData
+          .getAll('pythonPackages')
+          .map((pkg) => String(pkg).trim())
+          .filter(Boolean),
+        ...String(formData.get('pythonPackagesExtra') ?? '')
+          .split(',')
+          .map((pkg) => pkg.trim())
+          .filter(Boolean),
+      ])).join(', '),
       content: String(formData.get('content') ?? ''),
     };
 
@@ -41,6 +46,8 @@ export default async function EditPostPage({ params }: { params: Promise<{ slug:
     updatePostFile(slug, payload);
     redirect(`/admin/blog/${slug}?saved=1`);
   }
+
+  const customPythonPackages = (post.pythonPackages ?? []).filter((pkg) => !AVAILABLE_PYTHON_PACKAGES.includes(pkg));
 
   return (
     <main className="bg-[#000000] min-h-screen text-white px-4 py-8 md:px-10 lg:px-24">
@@ -96,6 +103,17 @@ export default async function EditPostPage({ params }: { params: Promise<{ slug:
               ))}
             </div>
           </fieldset>
+
+
+          <label className="space-y-1 block">
+            <span className="text-sm text-[#a0a0a5]">Additional Python libraries (optional, comma-separated)</span>
+            <input
+              name="pythonPackagesExtra"
+              defaultValue={customPythonPackages.join(', ')}
+              placeholder="sympy, seaborn"
+              className="w-full rounded-md bg-black border border-[#2C2C2E] px-3 py-2"
+            />
+          </label>
 
           <label className="space-y-1 block">
             <span className="text-sm text-[#a0a0a5]">Content (Markdown)</span>
