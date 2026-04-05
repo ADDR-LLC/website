@@ -26,7 +26,7 @@ export function BlogSection() {
             >
               <div className="flex items-center gap-2 text-[#95bdc9] text-sm mb-4 font-mono">
                 <Calendar className="w-4 h-4" />
-                <time>{new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
+                <time>{new Date(post.date).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' })}</time>
               </div>
 
               <h3 className="text-xl md:text-2xl font-bold text-[#e8e8e8] mb-3 tracking-tight group-hover:text-white transition-colors duration-300">

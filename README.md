@@ -62,6 +62,8 @@ Then:
 1. Open `/admin/login`
 2. Enter `BLOG_ADMIN_PASSWORD`
 3. If correct, a signed cookie session is set and you can manage posts at `/admin/blog`
+4. In create/edit, the Date & time field is optional. If left empty, the save time is used automatically (to the minute).
+5. Posts can be deleted from the admin list or from the edit page “Danger zone”.
 
 ### Deployed environments (Vercel / Netlify / server-hosted Next.js)
 
@@ -115,7 +117,7 @@ Those selections are saved in post frontmatter as `pythonPackages`, for example:
 pythonPackages: "numpy, matplotlib"
 ```
 
-At runtime, selected libraries are preloaded before snippet execution.
+At runtime, selected libraries are preloaded before snippet execution. If a package is not in the default Pyodide bundle (for example `seaborn`), the runner attempts installation via `micropip` in-browser.
 
 Notes:
 

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { clearAdminSession, requireAdminAuth } from '@/lib/admin-auth';
-import { createPostFile, type PostFormInput } from '@/lib/blog-admin';
+import { createPostFile, deletePostFile, type PostFormInput } from '@/lib/blog-admin';
 import { getSortedPostsData } from '@/lib/blog';
 
 const AVAILABLE_PYTHON_PACKAGES = ['numpy', 'matplotlib', 'pandas', 'scipy'];
@@ -21,20 +21,22 @@ export default async function AdminBlogPage() {
       date: String(formData.get('date') ?? ''),
       excerpt: String(formData.get('excerpt') ?? ''),
       tags: String(formData.get('tags') ?? ''),
-      pythonPackages: Array.from(new Set([
-        ...formData
-          .getAll('pythonPackages')
-          .map((pkg) => String(pkg).trim())
-          .filter(Boolean),
-        ...String(formData.get('pythonPackagesExtra') ?? '')
-          .split(',')
-          .map((pkg) => pkg.trim())
-          .filter(Boolean),
-      ])).join(', '),
+      pythonPackages: Array.from(
+        new Set([
+          ...formData
+            .getAll('pythonPackages')
+            .map((pkg) => String(pkg).trim())
+            .filter(Boolean),
+          ...String(formData.get('pythonPackagesExtra') ?? '')
+            .split(',')
+            .map((pkg) => pkg.trim())
+            .filter(Boolean),
+        ]),
+      ).join(', '),
       content: String(formData.get('content') ?? ''),
     };
 
-    if (!payload.title || !payload.date || !payload.content) {
+    if (!payload.title || !payload.content) {
       redirect('/admin/blog?error=missing');
     }
 
@@ -45,6 +47,25 @@ export default async function AdminBlogPage() {
     }
 
     redirect('/admin/blog?created=1');
+  }
+
+  async function deletePost(formData: FormData) {
+    'use server';
+
+    await requireAdminAuth();
+
+    const slug = String(formData.get('slug') ?? '').trim();
+    if (!slug) {
+      redirect('/admin/blog?error=missing-slug');
+    }
+
+    try {
+      deletePostFile(slug);
+    } catch {
+      redirect('/admin/blog?error=delete');
+    }
+
+    redirect('/admin/blog?deleted=1');
   }
 
   async function logout() {
@@ -80,8 +101,9 @@ export default async function AdminBlogPage() {
             </label>
 
             <label className="space-y-1">
-              <span className="text-sm text-[#a0a0a5]">Date</span>
-              <input name="date" type="date" required className="w-full rounded-md bg-black border border-[#2C2C2E] px-3 py-2" />
+              <span className="text-sm text-[#a0a0a5]">Date & time (optional)</span>
+              <input name="date" type="datetime-local" className="w-full rounded-md bg-black border border-[#2C2C2E] px-3 py-2" />
+              <p className="text-xs text-[#7f7f82]">Leave empty to auto-use the current date/time at save.</p>
             </label>
 
             <label className="space-y-1 md:col-span-2">
@@ -107,12 +129,11 @@ export default async function AdminBlogPage() {
               <p className="text-xs text-[#888888]">Readers can run `python-run` blocks with these libraries preloaded.</p>
             </fieldset>
 
-
             <label className="space-y-1 md:col-span-2">
               <span className="text-sm text-[#a0a0a5]">Additional Python libraries (optional, comma-separated)</span>
               <input
                 name="pythonPackagesExtra"
-                placeholder="sympy, seaborn"
+                placeholder="seaborn, sympy"
                 className="w-full rounded-md bg-black border border-[#2C2C2E] px-3 py-2"
               />
             </label>
@@ -159,6 +180,15 @@ export default async function AdminBlogPage() {
                   >
                     Edit
                   </Link>
+                  <form action={deletePost}>
+                    <input type="hidden" name="slug" value={post.slug} />
+                    <button
+                      type="submit"
+                      className="rounded-md border border-red-800/80 px-3 py-1 text-sm text-red-300 hover:border-red-500"
+                    >
+                      Delete
+                    </button>
+                  </form>
                 </div>
               </li>
             ))}

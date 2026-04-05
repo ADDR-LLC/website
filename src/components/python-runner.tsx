@@ -82,7 +82,24 @@ export function PythonRunner({ code, packages = [] }: { code: string; packages?:
       const pyodide = await getPyodide();
 
       if (normalizedPackages.length > 0) {
-        await pyodide.loadPackage(normalizedPackages);
+        const missingPackages: string[] = [];
+
+        for (const pkg of normalizedPackages) {
+          try {
+            await pyodide.loadPackage(pkg);
+          } catch {
+            missingPackages.push(pkg);
+          }
+        }
+
+        if (missingPackages.length > 0) {
+          await pyodide.loadPackage('micropip');
+          const escapedPackages = JSON.stringify(missingPackages);
+          await pyodide.runPythonAsync(`
+import micropip
+await micropip.install(${escapedPackages})
+`);
+        }
       }
 
       setStatus('running');

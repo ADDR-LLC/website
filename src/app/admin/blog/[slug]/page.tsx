@@ -1,6 +1,6 @@
 import { getPostData } from '@/lib/blog';
 import { requireAdminAuth } from '@/lib/admin-auth';
-import { updatePostFile, type PostFormInput } from '@/lib/blog-admin';
+import { deletePostFile, updatePostFile, type PostFormInput } from '@/lib/blog-admin';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 
@@ -26,25 +26,35 @@ export default async function EditPostPage({ params }: { params: Promise<{ slug:
       date: String(formData.get('date') ?? ''),
       excerpt: String(formData.get('excerpt') ?? ''),
       tags: String(formData.get('tags') ?? ''),
-      pythonPackages: Array.from(new Set([
-        ...formData
-          .getAll('pythonPackages')
-          .map((pkg) => String(pkg).trim())
-          .filter(Boolean),
-        ...String(formData.get('pythonPackagesExtra') ?? '')
-          .split(',')
-          .map((pkg) => pkg.trim())
-          .filter(Boolean),
-      ])).join(', '),
+      pythonPackages: Array.from(
+        new Set([
+          ...formData
+            .getAll('pythonPackages')
+            .map((pkg) => String(pkg).trim())
+            .filter(Boolean),
+          ...String(formData.get('pythonPackagesExtra') ?? '')
+            .split(',')
+            .map((pkg) => pkg.trim())
+            .filter(Boolean),
+        ]),
+      ).join(', '),
       content: String(formData.get('content') ?? ''),
     };
 
-    if (!payload.title || !payload.date || !payload.content) {
+    if (!payload.title || !payload.content) {
       redirect(`/admin/blog/${slug}?error=missing`);
     }
 
     updatePostFile(slug, payload);
     redirect(`/admin/blog/${slug}?saved=1`);
+  }
+
+  async function deletePost() {
+    'use server';
+
+    await requireAdminAuth();
+    deletePostFile(slug);
+    redirect('/admin/blog?deleted=1');
   }
 
   const customPythonPackages = (post.pythonPackages ?? []).filter((pkg) => !AVAILABLE_PYTHON_PACKAGES.includes(pkg));
@@ -66,14 +76,14 @@ export default async function EditPostPage({ params }: { params: Promise<{ slug:
           </label>
 
           <label className="space-y-1 block">
-            <span className="text-sm text-[#a0a0a5]">Date</span>
+            <span className="text-sm text-[#a0a0a5]">Date & time (optional)</span>
             <input
               name="date"
-              type="date"
-              defaultValue={post.date.slice(0, 10)}
-              required
+              type="datetime-local"
+              defaultValue={post.date.slice(0, 16)}
               className="w-full rounded-md bg-black border border-[#2C2C2E] px-3 py-2"
             />
+            <p className="text-xs text-[#7f7f82]">Leave empty to auto-use the current date/time at save.</p>
           </label>
 
           <label className="space-y-1 block">
@@ -104,13 +114,12 @@ export default async function EditPostPage({ params }: { params: Promise<{ slug:
             </div>
           </fieldset>
 
-
           <label className="space-y-1 block">
             <span className="text-sm text-[#a0a0a5]">Additional Python libraries (optional, comma-separated)</span>
             <input
               name="pythonPackagesExtra"
               defaultValue={customPythonPackages.join(', ')}
-              placeholder="sympy, seaborn"
+              placeholder="seaborn, sympy"
               className="w-full rounded-md bg-black border border-[#2C2C2E] px-3 py-2"
             />
           </label>
@@ -126,8 +135,17 @@ export default async function EditPostPage({ params }: { params: Promise<{ slug:
             />
           </label>
 
-          <button type="submit" className="rounded-md bg-[#95bdc9] text-black font-semibold px-4 py-2 hover:opacity-90">
-            Save changes
+          <div className="flex flex-wrap items-center gap-3">
+            <button type="submit" className="rounded-md bg-[#95bdc9] text-black font-semibold px-4 py-2 hover:opacity-90">
+              Save changes
+            </button>
+          </div>
+        </form>
+
+        <form action={deletePost} className="rounded-2xl border border-red-900/60 bg-red-950/20 p-4">
+          <p className="text-sm text-red-300 mb-3">Danger zone: permanently delete this post.</p>
+          <button type="submit" className="rounded-md border border-red-800/80 px-4 py-2 text-red-300 hover:border-red-500">
+            Delete post
           </button>
         </form>
       </div>

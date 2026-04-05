@@ -21,8 +21,19 @@ function slugify(value: string) {
     .replace(/-+/g, '-');
 }
 
+function resolveDate(dateInput: string) {
+  const trimmed = dateInput.trim();
+  if (trimmed) {
+    return trimmed;
+  }
+
+  return new Date().toISOString().slice(0, 16);
+}
+
 export function toMdxDocument(values: PostFormInput) {
-  return `---\ntitle: "${values.title.replace(/"/g, '\\\"')}"\ndate: "${values.date}"\nexcerpt: "${values.excerpt.replace(/"/g, '\\\"')}"\ntags: "${values.tags}"\npythonPackages: "${values.pythonPackages}"\n---\n\n${values.content.trim()}\n`;
+  const date = resolveDate(values.date);
+
+  return `---\ntitle: "${values.title.replace(/"/g, '\\\"')}"\ndate: "${date}"\nexcerpt: "${values.excerpt.replace(/"/g, '\\\"')}"\ntags: "${values.tags}"\npythonPackages: "${values.pythonPackages}"\n---\n\n${values.content.trim()}\n`;
 }
 
 export function createPostFile(values: PostFormInput) {
@@ -55,4 +66,14 @@ export function updatePostFile(slug: string, values: PostFormInput) {
   }
 
   fs.writeFileSync(filePath, toMdxDocument(values), 'utf8');
+}
+
+export function deletePostFile(slug: string) {
+  const filePath = path.join(postsDirectory, `${slug}.mdx`);
+
+  if (!fs.existsSync(filePath)) {
+    throw new Error('Post not found.');
+  }
+
+  fs.unlinkSync(filePath);
 }
