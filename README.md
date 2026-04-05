@@ -20,6 +20,31 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Blog admin
+
+The blog supports password-protected admin editing routes.
+
+1. Set an environment variable:
+
+```bash
+BLOG_ADMIN_PASSWORD=your-strong-password
+```
+
+2. Visit `/admin/login` and sign in.
+3. Manage posts at `/admin/blog`.
+
+### Embedding interactive demos in posts
+
+Inside post markdown content, use a fenced code block with the `embed` language and provide a single URL:
+
+````md
+```embed
+https://stackblitz.com/edit/your-demo
+```
+````
+
+Allowed hosts are restricted to `codepen.io`, `codesandbox.io`, and `stackblitz.com`.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
