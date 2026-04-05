@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { clearAdminSession, requireAdminAuth } from '@/lib/admin-auth';
 import { createPostFile, deletePostFile, type PostFormInput } from '@/lib/blog-admin';
 import { getSortedPostsData } from '@/lib/blog';
+import { DateTimeField } from '@/components/date-time-field';
 
 const AVAILABLE_PYTHON_PACKAGES = ['numpy', 'matplotlib', 'pandas', 'scipy'];
 
@@ -19,6 +20,7 @@ export default async function AdminBlogPage() {
     const payload: PostFormInput = {
       title: String(formData.get('title') ?? ''),
       date: String(formData.get('date') ?? ''),
+      timezone: String(formData.get('timezone') ?? ''),
       excerpt: String(formData.get('excerpt') ?? ''),
       tags: String(formData.get('tags') ?? ''),
       pythonPackages: Array.from(
@@ -101,9 +103,8 @@ export default async function AdminBlogPage() {
             </label>
 
             <label className="space-y-1">
-              <span className="text-sm text-[#a0a0a5]">Date & time (optional)</span>
-              <input name="date" type="datetime-local" className="w-full rounded-md bg-black border border-[#2C2C2E] px-3 py-2" />
-              <p className="text-xs text-[#7f7f82]">Leave empty to auto-use the current date/time at save.</p>
+              <span className="text-sm text-[#a0a0a5]">Date & time</span>
+              <DateTimeField />
             </label>
 
             <label className="space-y-1 md:col-span-2">

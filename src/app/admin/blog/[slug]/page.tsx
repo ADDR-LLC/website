@@ -3,6 +3,7 @@ import { requireAdminAuth } from '@/lib/admin-auth';
 import { deletePostFile, updatePostFile, type PostFormInput } from '@/lib/blog-admin';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
+import { DateTimeField } from '@/components/date-time-field';
 
 const AVAILABLE_PYTHON_PACKAGES = ['numpy', 'matplotlib', 'pandas', 'scipy'];
 
@@ -24,6 +25,7 @@ export default async function EditPostPage({ params }: { params: Promise<{ slug:
     const payload: PostFormInput = {
       title: String(formData.get('title') ?? ''),
       date: String(formData.get('date') ?? ''),
+      timezone: String(formData.get('timezone') ?? ''),
       excerpt: String(formData.get('excerpt') ?? ''),
       tags: String(formData.get('tags') ?? ''),
       pythonPackages: Array.from(
@@ -76,14 +78,8 @@ export default async function EditPostPage({ params }: { params: Promise<{ slug:
           </label>
 
           <label className="space-y-1 block">
-            <span className="text-sm text-[#a0a0a5]">Date & time (optional)</span>
-            <input
-              name="date"
-              type="datetime-local"
-              defaultValue={post.date.slice(0, 16)}
-              className="w-full rounded-md bg-black border border-[#2C2C2E] px-3 py-2"
-            />
-            <p className="text-xs text-[#7f7f82]">Leave empty to auto-use the current date/time at save.</p>
+            <span className="text-sm text-[#a0a0a5]">Date & time</span>
+            <DateTimeField initialDate={post.date} />
           </label>
 
           <label className="space-y-1 block">

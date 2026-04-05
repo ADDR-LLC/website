@@ -62,7 +62,7 @@ Then:
 1. Open `/admin/login`
 2. Enter `BLOG_ADMIN_PASSWORD`
 3. If correct, a signed cookie session is set and you can manage posts at `/admin/blog`
-4. In create/edit, the Date & time field is optional. If left empty, the save time is used automatically (to the minute).
+4. Date & time defaults to the editor's current local timezone time. If the date is missing at submit, server fallback uses the submitted timezone, then defaults to America/New_York.
 5. Posts can be deleted from the admin list or from the edit page “Danger zone”.
 
 ### Deployed environments (Vercel / Netlify / server-hosted Next.js)

@@ -6,6 +6,7 @@ const postsDirectory = path.join(process.cwd(), 'src/content/blog');
 export interface PostFormInput {
   title: string;
   date: string;
+  timezone?: string;
   excerpt: string;
   tags: string;
   pythonPackages: string;
@@ -21,17 +22,41 @@ function slugify(value: string) {
     .replace(/-+/g, '-');
 }
 
-function resolveDate(dateInput: string) {
+function formatNowInTimeZone(timeZone: string) {
+  const now = new Date();
+  const formatter = new Intl.DateTimeFormat('sv-SE', {
+    timeZone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  });
+
+  const parts = formatter.formatToParts(now);
+  const map = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+
+  return `${map.year}-${map.month}-${map.day}T${map.hour}:${map.minute}`;
+}
+
+function resolveDate(dateInput: string, timezone?: string) {
   const trimmed = dateInput.trim();
   if (trimmed) {
     return trimmed;
   }
 
-  return new Date().toISOString().slice(0, 16);
+  const tz = timezone?.trim() || 'America/New_York';
+
+  try {
+    return formatNowInTimeZone(tz);
+  } catch {
+    return formatNowInTimeZone('America/New_York');
+  }
 }
 
 export function toMdxDocument(values: PostFormInput) {
-  const date = resolveDate(values.date);
+  const date = resolveDate(values.date, values.timezone);
 
   return `---\ntitle: "${values.title.replace(/"/g, '\\\"')}"\ndate: "${date}"\nexcerpt: "${values.excerpt.replace(/"/g, '\\\"')}"\ntags: "${values.tags}"\npythonPackages: "${values.pythonPackages}"\n---\n\n${values.content.trim()}\n`;
 }
