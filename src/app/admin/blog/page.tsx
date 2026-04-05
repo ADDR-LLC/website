@@ -89,7 +89,7 @@ export default async function AdminBlogPage() {
                 rows={12}
                 required
                 className="w-full rounded-md bg-black border border-[#2C2C2E] px-3 py-2 font-mono text-sm"
-                placeholder={'## Heading\n\nParagraph text\n\n```embed\nhttps://example.com/widget\n```'}
+                placeholder={'## Heading\n\nParagraph text\n\n```embed\nhttps://example.com/widget\n```\n\n```python-run\nprint(2 + 2)\n```'}
               />
             </label>
 

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ChevronLeft, Calendar } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import type { Components } from 'react-markdown';
+import { PythonRunner } from '@/components/python-runner';
 
 const ALLOWED_EMBED_HOSTS = new Set(['codepen.io', 'codesandbox.io', 'stackblitz.com']);
 
@@ -37,6 +38,10 @@ const markdownComponents: Components = {
       } catch {
         return <p className="text-sm text-red-300">Invalid embed URL in embed code block.</p>;
       }
+    }
+
+    if (className === 'language-python-run') {
+      return <PythonRunner code={raw} />;
     }
 
     return (
