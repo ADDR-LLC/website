@@ -4,6 +4,8 @@ import { updatePostFile, type PostFormInput } from '@/lib/blog-admin';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 
+const AVAILABLE_PYTHON_PACKAGES = ['numpy', 'matplotlib', 'pandas', 'scipy'];
+
 export default async function EditPostPage({ params }: { params: Promise<{ slug: string }> }) {
   await requireAdminAuth();
 
@@ -24,6 +26,11 @@ export default async function EditPostPage({ params }: { params: Promise<{ slug:
       date: String(formData.get('date') ?? ''),
       excerpt: String(formData.get('excerpt') ?? ''),
       tags: String(formData.get('tags') ?? ''),
+      pythonPackages: formData
+        .getAll('pythonPackages')
+        .map((pkg) => String(pkg).trim())
+        .filter(Boolean)
+        .join(', '),
       content: String(formData.get('content') ?? ''),
     };
 
@@ -71,6 +78,24 @@ export default async function EditPostPage({ params }: { params: Promise<{ slug:
             <span className="text-sm text-[#a0a0a5]">Tags (comma-separated)</span>
             <input name="tags" defaultValue={post.tags?.join(', ')} className="w-full rounded-md bg-black border border-[#2C2C2E] px-3 py-2" />
           </label>
+
+          <fieldset className="space-y-2">
+            <legend className="text-sm text-[#a0a0a5]">Python libraries for this post</legend>
+            <div className="flex flex-wrap gap-4">
+              {AVAILABLE_PYTHON_PACKAGES.map((pkg) => (
+                <label key={pkg} className="inline-flex items-center gap-2 text-sm text-[#d7d7d7]">
+                  <input
+                    type="checkbox"
+                    name="pythonPackages"
+                    value={pkg}
+                    defaultChecked={post.pythonPackages?.includes(pkg)}
+                    className="accent-[#95bdc9]"
+                  />
+                  {pkg}
+                </label>
+              ))}
+            </div>
+          </fieldset>
 
           <label className="space-y-1 block">
             <span className="text-sm text-[#a0a0a5]">Content (Markdown)</span>

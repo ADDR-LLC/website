@@ -8,49 +8,51 @@ import { PythonRunner } from '@/components/python-runner';
 
 const ALLOWED_EMBED_HOSTS = new Set(['codepen.io', 'codesandbox.io', 'stackblitz.com']);
 
-const markdownComponents: Components = {
-  code({ className, children, ...props }) {
-    const raw = String(children).trim();
+function getMarkdownComponents(pythonPackages: string[] = []): Components {
+  return {
+    code({ className, children, ...props }) {
+      const raw = String(children).trim();
 
-    if (className === 'language-embed') {
-      try {
-        const embedUrl = new URL(raw);
+      if (className === 'language-embed') {
+        try {
+          const embedUrl = new URL(raw);
 
-        if (!ALLOWED_EMBED_HOSTS.has(embedUrl.hostname)) {
+          if (!ALLOWED_EMBED_HOSTS.has(embedUrl.hostname)) {
+            return (
+              <p className="text-sm text-red-300 border border-red-800/60 bg-red-900/20 rounded-md p-3">
+                Blocked embed host: <strong>{embedUrl.hostname}</strong>
+              </p>
+            );
+          }
+
           return (
-            <p className="text-sm text-red-300 border border-red-800/60 bg-red-900/20 rounded-md p-3">
-              Blocked embed host: <strong>{embedUrl.hostname}</strong>
-            </p>
+            <div className="my-6 rounded-xl overflow-hidden border border-[#2C2C2E]">
+              <iframe
+                title={`Embedded demo from ${embedUrl.hostname}`}
+                src={embedUrl.toString()}
+                loading="lazy"
+                className="w-full min-h-[380px] bg-[#0a0a0a]"
+                sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+              />
+            </div>
           );
+        } catch {
+          return <p className="text-sm text-red-300">Invalid embed URL in embed code block.</p>;
         }
-
-        return (
-          <div className="my-6 rounded-xl overflow-hidden border border-[#2C2C2E]">
-            <iframe
-              title={`Embedded demo from ${embedUrl.hostname}`}
-              src={embedUrl.toString()}
-              loading="lazy"
-              className="w-full min-h-[380px] bg-[#0a0a0a]"
-              sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-            />
-          </div>
-        );
-      } catch {
-        return <p className="text-sm text-red-300">Invalid embed URL in embed code block.</p>;
       }
-    }
 
-    if (className === 'language-python-run') {
-      return <PythonRunner code={raw} />;
-    }
+      if (className === 'language-python-run') {
+        return <PythonRunner code={raw} packages={pythonPackages} />;
+      }
 
-    return (
-      <code className={className} {...props}>
-        {children}
-      </code>
-    );
-  },
-};
+      return (
+        <code className={className} {...props}>
+          {children}
+        </code>
+      );
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const posts = getSortedPostsData();
@@ -100,7 +102,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </div>
 
         <div className="prose prose-invert prose-lg max-w-none prose-headings:text-[#e8e8e8] prose-a:text-[#95bdc9] hover:prose-a:text-white prose-a:transition-colors prose-p:text-[#888888] prose-strong:text-white prose-li:text-[#888888]">
-          <ReactMarkdown components={markdownComponents}>{post.content}</ReactMarkdown>
+          <ReactMarkdown components={getMarkdownComponents(post.pythonPackages)}>{post.content}</ReactMarkdown>
         </div>
       </article>
     </div>

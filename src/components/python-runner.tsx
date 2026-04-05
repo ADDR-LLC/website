@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 
 type PyodideApi = {
   runPythonAsync: (code: string) => Promise<unknown>;
+  loadPackage: (packages: string | string[]) => Promise<void>;
 };
 
 declare global {
@@ -54,12 +55,16 @@ async function getPyodide() {
   return window.__pyodidePromise__;
 }
 
-export function PythonRunner({ code }: { code: string }) {
+export function PythonRunner({ code, packages = [] }: { code: string; packages?: string[] }) {
   const [output, setOutput] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'running' | 'done' | 'error'>('idle');
   const [error, setError] = useState('');
 
   const normalizedCode = useMemo(() => code.trim(), [code]);
+  const normalizedPackages = useMemo(
+    () => packages.map((pkg) => pkg.trim()).filter(Boolean),
+    [packages],
+  );
 
   async function runPython() {
     setStatus('loading');
@@ -68,6 +73,11 @@ export function PythonRunner({ code }: { code: string }) {
 
     try {
       const pyodide = await getPyodide();
+
+      if (normalizedPackages.length > 0) {
+        await pyodide.loadPackage(normalizedPackages);
+      }
+
       setStatus('running');
 
       const escapedCode = JSON.stringify(normalizedCode);
@@ -106,7 +116,12 @@ _stdout.getvalue() + _stderr.getvalue()
   return (
     <div className="my-6 rounded-xl border border-[#2C2C2E] bg-[#111111] overflow-hidden">
       <div className="flex items-center justify-between px-4 py-3 border-b border-[#2C2C2E] bg-black/30">
-        <strong className="text-sm text-[#e8e8e8]">Python snippet</strong>
+        <div>
+          <strong className="text-sm text-[#e8e8e8]">Python snippet</strong>
+          {normalizedPackages.length > 0 ? (
+            <p className="text-xs text-[#8baec0] mt-1">Preloaded: {normalizedPackages.join(', ')}</p>
+          ) : null}
+        </div>
         <button
           type="button"
           onClick={runPython}

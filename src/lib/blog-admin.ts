@@ -8,6 +8,7 @@ export interface PostFormInput {
   date: string;
   excerpt: string;
   tags: string;
+  pythonPackages: string;
   content: string;
 }
 
@@ -21,7 +22,7 @@ function slugify(value: string) {
 }
 
 export function toMdxDocument(values: PostFormInput) {
-  return `---\ntitle: "${values.title.replace(/"/g, '\\\"')}"\ndate: "${values.date}"\nexcerpt: "${values.excerpt.replace(/"/g, '\\\"')}"\ntags: "${values.tags}"\n---\n\n${values.content.trim()}\n`;
+  return `---\ntitle: "${values.title.replace(/"/g, '\\\"')}"\ndate: "${values.date}"\nexcerpt: "${values.excerpt.replace(/"/g, '\\\"')}"\ntags: "${values.tags}"\npythonPackages: "${values.pythonPackages}"\n---\n\n${values.content.trim()}\n`;
 }
 
 export function createPostFile(values: PostFormInput) {

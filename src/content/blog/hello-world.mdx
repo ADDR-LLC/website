@@ -3,6 +3,7 @@ title: "Welcome to ADDR"
 date: "2024-03-28"
 excerpt: "An introduction to Advanced Drone Development & Research and our vision for the future."
 tags: "company, vision, announcement"
+pythonPackages: "numpy, matplotlib"
 ---
 
 # Welcome to ADDR
@@ -28,9 +29,10 @@ https://stackblitz.com/edit/react-ts
 Use a `python-run` code fence to include code that readers can execute in the browser:
 
 ```python-run
-numbers = [5, 8, 13]
-print('sum:', sum(numbers))
-print('average:', sum(numbers) / len(numbers))
+import numpy as np
+numbers = np.array([5, 8, 13])
+print('sum:', numbers.sum())
+print('average:', numbers.mean())
 ```
 
 Stay tuned for more updates on our progress, technical deep-dives into our AI algorithms, and news about our latest autonomous flight tests!

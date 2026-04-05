@@ -4,6 +4,8 @@ import { clearAdminSession, requireAdminAuth } from '@/lib/admin-auth';
 import { createPostFile, type PostFormInput } from '@/lib/blog-admin';
 import { getSortedPostsData } from '@/lib/blog';
 
+const AVAILABLE_PYTHON_PACKAGES = ['numpy', 'matplotlib', 'pandas', 'scipy'];
+
 export default async function AdminBlogPage() {
   await requireAdminAuth();
 
@@ -19,6 +21,11 @@ export default async function AdminBlogPage() {
       date: String(formData.get('date') ?? ''),
       excerpt: String(formData.get('excerpt') ?? ''),
       tags: String(formData.get('tags') ?? ''),
+      pythonPackages: formData
+        .getAll('pythonPackages')
+        .map((pkg) => String(pkg).trim())
+        .filter(Boolean)
+        .join(', '),
       content: String(formData.get('content') ?? ''),
     };
 
@@ -82,6 +89,19 @@ export default async function AdminBlogPage() {
               <input name="tags" className="w-full rounded-md bg-black border border-[#2C2C2E] px-3 py-2" />
             </label>
 
+            <fieldset className="space-y-2 md:col-span-2">
+              <legend className="text-sm text-[#a0a0a5]">Python libraries for this post</legend>
+              <div className="flex flex-wrap gap-4">
+                {AVAILABLE_PYTHON_PACKAGES.map((pkg) => (
+                  <label key={pkg} className="inline-flex items-center gap-2 text-sm text-[#d7d7d7]">
+                    <input type="checkbox" name="pythonPackages" value={pkg} className="accent-[#95bdc9]" />
+                    {pkg}
+                  </label>
+                ))}
+              </div>
+              <p className="text-xs text-[#888888]">Readers can run `python-run` blocks with these libraries preloaded.</p>
+            </fieldset>
+
             <label className="space-y-1 md:col-span-2">
               <span className="text-sm text-[#a0a0a5]">Content (Markdown)</span>
               <textarea
@@ -89,7 +109,7 @@ export default async function AdminBlogPage() {
                 rows={12}
                 required
                 className="w-full rounded-md bg-black border border-[#2C2C2E] px-3 py-2 font-mono text-sm"
-                placeholder={'## Heading\n\nParagraph text\n\n```embed\nhttps://example.com/widget\n```\n\n```python-run\nprint(2 + 2)\n```'}
+                placeholder={'## Heading\n\nParagraph text\n\n```embed\nhttps://example.com/widget\n```\n\n```python-run\nimport numpy as np\nprint(np.arange(5))\n```'}
               />
             </label>
 

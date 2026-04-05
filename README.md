@@ -91,9 +91,22 @@ Use a `python-run` fenced code block to include Python that readers can execute 
 
 ````md
 ```python-run
-print("hello from python")
+import numpy as np
+print(np.arange(5))
 ```
 ````
+
+### Choosing libraries for each post
+
+In the admin create/edit form, select the Python libraries needed for that post (currently: `numpy`, `matplotlib`, `pandas`, `scipy`).
+
+Those selections are saved in post frontmatter as `pythonPackages`, for example:
+
+```md
+pythonPackages: "numpy, matplotlib"
+```
+
+At runtime, selected libraries are preloaded before snippet execution.
 
 Notes:
 
