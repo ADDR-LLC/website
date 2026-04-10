@@ -1,14 +1,14 @@
 "use client";
 
 import { UnicornScene } from "unicornstudio-react/next";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 export function RaycastAnimatedBlueBackground() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(
+    () => () => undefined,
+    () => true,
+    () => false
+  );
 
   if (!mounted) return <div className="absolute inset-0 bg-[#000000]" />;
 

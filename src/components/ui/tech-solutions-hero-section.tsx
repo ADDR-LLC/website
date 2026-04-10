@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { RaycastAnimatedBlueBackground } from "./raycast-animated-blue-background";
 
 interface TechHeroProps {
@@ -16,18 +16,12 @@ export function TechSolutionsHeroSection({
   statLabel = "SMARTER SYSTEMS",
   statValue = "FOR SMARTER SOLUTIONS",
 }: TechHeroProps) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <div className="relative min-h-[calc(100vh-64px)] w-full flex flex-col items-start justify-center overflow-hidden bg-[#000000] text-white px-4 py-12 md:px-12 lg:px-24">
-      {mounted && <RaycastAnimatedBlueBackground />}
+      <RaycastAnimatedBlueBackground />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-start justify-center h-full flex-grow py-8">
-        <div className={`flex flex-col items-start text-left mt-12 md:mt-24 transition-opacity duration-1000 ${mounted ? "opacity-100" : "opacity-0"} animate-in fade-in`}>
+        <div className="flex flex-col items-start text-left mt-12 md:mt-24 transition-opacity duration-1000 opacity-100 animate-in fade-in">
           <h1 className="text-7xl md:text-9xl lg:text-[10rem] font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-[#e8e8e8] to-[#95bdc9] drop-shadow-[0_0_20px_rgba(126,227,135,0.2)]">
             {title}
           </h1>
