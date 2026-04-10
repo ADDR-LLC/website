@@ -9,7 +9,7 @@ function getConfiguredPassword() {
   const configured = process.env.BLOG_ADMIN_PASSWORD;
 
   if (!configured) {
-    throw new Error('Missing BLOG_ADMIN_PASSWORD environment variable.');
+    return null;
   }
 
   return configured;
@@ -19,20 +19,29 @@ function getSessionSecret() {
   const secret = process.env.BLOG_ADMIN_SESSION_SECRET ?? process.env.BLOG_ADMIN_PASSWORD;
 
   if (!secret) {
-    throw new Error('Missing BLOG_ADMIN_SESSION_SECRET or BLOG_ADMIN_PASSWORD environment variable.');
+    return null;
   }
 
   return secret;
 }
 
 function signPayload(payload: string) {
-  return crypto.createHmac('sha256', getSessionSecret()).update(payload).digest('base64url');
+  const secret = getSessionSecret();
+
+  if (!secret) {
+    return null;
+  }
+
+  return crypto.createHmac('sha256', secret).update(payload).digest('base64url');
 }
 
 function createSessionToken() {
   const expiresAt = Date.now() + SESSION_TTL_SECONDS * 1000;
   const payload = `admin:${expiresAt}`;
   const signature = signPayload(payload);
+  if (!signature) {
+    return null;
+  }
   return `${payload}.${signature}`;
 }
 
@@ -44,6 +53,9 @@ function validateSessionToken(token: string) {
   }
 
   const expected = signPayload(payload);
+  if (!expected) {
+    return false;
+  }
   const signatureBuffer = Buffer.from(signature);
   const expectedBuffer = Buffer.from(expected);
 
@@ -70,7 +82,9 @@ function validateSessionToken(token: string) {
 }
 
 export async function isAdminAuthenticated() {
-  getConfiguredPassword();
+  if (!getConfiguredPassword()) {
+    return false;
+  }
 
   const cookieStore = await cookies();
   const session = cookieStore.get(ADMIN_COOKIE_NAME)?.value;
@@ -93,12 +107,17 @@ export async function requireAdminAuth() {
 export async function createAdminSession(password: string) {
   const configuredPassword = getConfiguredPassword();
 
-  if (password !== configuredPassword) {
+  if (!configuredPassword || password !== configuredPassword) {
+    return false;
+  }
+
+  const sessionToken = createSessionToken();
+  if (!sessionToken) {
     return false;
   }
 
   const cookieStore = await cookies();
-  cookieStore.set(ADMIN_COOKIE_NAME, createSessionToken(), {
+  cookieStore.set(ADMIN_COOKIE_NAME, sessionToken, {
     httpOnly: true,
     sameSite: 'lax',
     secure: process.env.NODE_ENV === 'production',
