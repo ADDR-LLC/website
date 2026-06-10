@@ -55,7 +55,7 @@ function getMarkdownComponents(pythonPackages: string[] = []): Components {
 }
 
 export async function generateStaticParams() {
-  const posts = getSortedPostsData();
+  const posts = await getSortedPostsData();
   return posts.map((post) => ({
     slug: post.slug,
   }));
@@ -63,7 +63,7 @@ export async function generateStaticParams() {
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getPostData(slug);
+  const post = await getPostData(slug);
 
   if (!post) {
     notFound();

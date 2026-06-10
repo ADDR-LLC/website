@@ -1,7 +1,5 @@
-import fs from 'fs';
-import path from 'path';
-
-const postsDirectory = path.join(process.cwd(), 'src/content/blog');
+import { put, del, list } from '@vercel/blob';
+import { BLOG_BLOB_PREFIX } from './blog';
 
 export interface PostFormInput {
   title: string;
@@ -20,6 +18,10 @@ function slugify(value: string) {
     .replace(/[^a-z0-9\s-]/g, '')
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-');
+}
+
+function blobPath(slug: string) {
+  return `${BLOG_BLOB_PREFIX}${slug}.mdx`;
 }
 
 function formatNowInTimeZone(timeZone: string) {
@@ -61,44 +63,52 @@ export function toMdxDocument(values: PostFormInput) {
   return `---\ntitle: "${values.title.replace(/"/g, '\\\"')}"\ndate: "${date}"\nexcerpt: "${values.excerpt.replace(/"/g, '\\\"')}"\ntags: "${values.tags}"\npythonPackages: "${values.pythonPackages}"\n---\n\n${values.content.trim()}\n`;
 }
 
-export function createPostFile(values: PostFormInput) {
+async function postExists(slug: string) {
+  const path = blobPath(slug);
+  const { blobs } = await list({ prefix: path });
+  return blobs.some((blob) => blob.pathname === path);
+}
+
+const PUT_OPTIONS = {
+  access: 'private',
+  contentType: 'text/markdown; charset=utf-8',
+  addRandomSuffix: false,
+} as const;
+
+export async function createPostFile(values: PostFormInput) {
   const slug = slugify(values.title);
 
   if (!slug) {
     throw new Error('Unable to generate a slug from title.');
   }
 
-  if (!fs.existsSync(postsDirectory)) {
-    fs.mkdirSync(postsDirectory, { recursive: true });
-  }
-
-  const filePath = path.join(postsDirectory, `${slug}.mdx`);
-
-  if (fs.existsSync(filePath)) {
+  if (await postExists(slug)) {
     throw new Error('A post with this title already exists.');
   }
 
-  fs.writeFileSync(filePath, toMdxDocument(values), 'utf8');
+  await put(blobPath(slug), toMdxDocument(values), {
+    ...PUT_OPTIONS,
+    allowOverwrite: false,
+  });
 
   return slug;
 }
 
-export function updatePostFile(slug: string, values: PostFormInput) {
-  const filePath = path.join(postsDirectory, `${slug}.mdx`);
-
-  if (!fs.existsSync(filePath)) {
+export async function updatePostFile(slug: string, values: PostFormInput) {
+  if (!(await postExists(slug))) {
     throw new Error('Post not found.');
   }
 
-  fs.writeFileSync(filePath, toMdxDocument(values), 'utf8');
+  await put(blobPath(slug), toMdxDocument(values), {
+    ...PUT_OPTIONS,
+    allowOverwrite: true,
+  });
 }
 
-export function deletePostFile(slug: string) {
-  const filePath = path.join(postsDirectory, `${slug}.mdx`);
-
-  if (!fs.existsSync(filePath)) {
+export async function deletePostFile(slug: string) {
+  if (!(await postExists(slug))) {
     throw new Error('Post not found.');
   }
 
-  fs.unlinkSync(filePath);
+  await del(blobPath(slug));
 }

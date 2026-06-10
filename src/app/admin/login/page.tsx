@@ -1,5 +1,19 @@
 import { createAdminSession, isAdminAuthenticated } from '@/lib/admin-auth';
+import { checkLoginRateLimit, clearLoginAttempts, recordLoginFailure } from '@/lib/rate-limit';
+import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
+
+// Auth + rate-limit checks read per-request data — never prerender this.
+export const dynamic = 'force-dynamic';
+
+function getClientKey(headerList: Headers) {
+  const forwarded = headerList.get('x-forwarded-for');
+  if (forwarded) {
+    return forwarded.split(',')[0].trim();
+  }
+
+  return headerList.get('x-real-ip') ?? 'unknown';
+}
 
 export default async function AdminLoginPage({
   searchParams,
@@ -15,13 +29,21 @@ export default async function AdminLoginPage({
   async function login(formData: FormData) {
     'use server';
 
+    const clientKey = getClientKey(await headers());
+
+    if (!checkLoginRateLimit(clientKey).allowed) {
+      redirect('/admin/login?error=rate');
+    }
+
     const password = String(formData.get('password') ?? '');
     const ok = await createAdminSession(password);
 
     if (!ok) {
+      recordLoginFailure(clientKey);
       redirect('/admin/login?error=invalid');
     }
 
+    clearLoginAttempts(clientKey);
     redirect('/admin/blog');
   }
 
@@ -33,6 +55,10 @@ export default async function AdminLoginPage({
 
         {error === 'invalid' ? (
           <p className="text-red-300 text-sm mb-4">Invalid password. Please try again.</p>
+        ) : null}
+
+        {error === 'rate' ? (
+          <p className="text-red-300 text-sm mb-4">Too many failed attempts. Please wait a few minutes and try again.</p>
         ) : null}
 
         <form action={login} className="space-y-4">

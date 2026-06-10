@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { getSortedPostsData } from '@/lib/blog';
 import { Calendar, ArrowRight } from 'lucide-react';
 
-export function BlogSection() {
-  const posts = getSortedPostsData();
+export async function BlogSection() {
+  const posts = await getSortedPostsData();
 
   return (
     <section id="blog" className="bg-[#000000] text-white py-16 md:py-24 px-4 md:px-12 lg:px-24 overflow-hidden relative w-full flex-1">

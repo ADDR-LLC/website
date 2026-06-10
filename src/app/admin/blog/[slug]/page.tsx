@@ -1,17 +1,27 @@
-import { getPostData } from '@/lib/blog';
+import { BLOG_CACHE_TAG, getPostUncached } from '@/lib/blog';
 import { requireAdminAuth } from '@/lib/admin-auth';
 import { deletePostFile, updatePostFile, type PostFormInput } from '@/lib/blog-admin';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { DateTimeField } from '@/components/date-time-field';
 
 const AVAILABLE_PYTHON_PACKAGES = ['numpy', 'matplotlib', 'pandas', 'scipy'];
+
+// Auth-gated, single-user admin — always rendered per request, never prerendered.
+export const dynamic = 'force-dynamic';
+
+function revalidateBlog() {
+  revalidateTag(BLOG_CACHE_TAG, 'max');
+  revalidatePath('/blog');
+  revalidatePath('/blog/[slug]', 'page');
+}
 
 export default async function EditPostPage({ params }: { params: Promise<{ slug: string }> }) {
   await requireAdminAuth();
 
   const { slug } = await params;
-  const post = getPostData(slug);
+  const post = await getPostUncached(slug);
 
   if (!post) {
     notFound();
@@ -47,7 +57,8 @@ export default async function EditPostPage({ params }: { params: Promise<{ slug:
       redirect(`/admin/blog/${slug}?error=missing`);
     }
 
-    updatePostFile(slug, payload);
+    await updatePostFile(slug, payload);
+    revalidateBlog();
     redirect(`/admin/blog/${slug}?saved=1`);
   }
 
@@ -55,7 +66,8 @@ export default async function EditPostPage({ params }: { params: Promise<{ slug:
     'use server';
 
     await requireAdminAuth();
-    deletePostFile(slug);
+    await deletePostFile(slug);
+    revalidateBlog();
     redirect('/admin/blog?deleted=1');
   }
 

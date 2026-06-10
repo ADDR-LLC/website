@@ -1,16 +1,26 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { clearAdminSession, requireAdminAuth } from '@/lib/admin-auth';
 import { createPostFile, deletePostFile, type PostFormInput } from '@/lib/blog-admin';
-import { getSortedPostsData } from '@/lib/blog';
+import { BLOG_CACHE_TAG, getAllPostsUncached } from '@/lib/blog';
 import { DateTimeField } from '@/components/date-time-field';
 
 const AVAILABLE_PYTHON_PACKAGES = ['numpy', 'matplotlib', 'pandas', 'scipy'];
 
+// Auth-gated, single-user admin — always rendered per request, never prerendered.
+export const dynamic = 'force-dynamic';
+
+function revalidateBlog() {
+  revalidateTag(BLOG_CACHE_TAG, 'max');
+  revalidatePath('/blog');
+  revalidatePath('/blog/[slug]', 'page');
+}
+
 export default async function AdminBlogPage() {
   await requireAdminAuth();
 
-  const posts = getSortedPostsData();
+  const posts = await getAllPostsUncached();
 
   async function createPost(formData: FormData) {
     'use server';
@@ -43,11 +53,12 @@ export default async function AdminBlogPage() {
     }
 
     try {
-      createPostFile(payload);
+      await createPostFile(payload);
     } catch {
       redirect('/admin/blog?error=exists');
     }
 
+    revalidateBlog();
     redirect('/admin/blog?created=1');
   }
 
@@ -62,11 +73,12 @@ export default async function AdminBlogPage() {
     }
 
     try {
-      deletePostFile(slug);
+      await deletePostFile(slug);
     } catch {
       redirect('/admin/blog?error=delete');
     }
 
+    revalidateBlog();
     redirect('/admin/blog?deleted=1');
   }
 
