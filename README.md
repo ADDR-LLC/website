@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ADDR Website
 
-## Getting Started
+A Next.js website with a password-protected blog admin for creating and managing articles. Articles are stored in a private [Vercel Blob](https://vercel.com/docs/storage/vercel-blob) store — no database required.
 
-First, run the development server:
+## Local development
+
+### Prerequisites
+
+- Node.js 20+
+- An `.env.local` file in the project root (see below)
+
+### Getting the `.env.local` file
+
+**Ask Aman** — he holds the team's local credentials. Do not create your own values for `BLOB_READ_WRITE_TOKEN`; you need the token for the shared store or you won't be able to read/write articles locally.
+
+### `.env.local` format
+
+Once you have the credentials, create `.env.local` in the project root with this structure:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Vercel Blob — private store for article .mdx files
+BLOB_READ_WRITE_TOKEN=vercel_blob_rw_…
+
+# Blog admin auth
+BLOG_ADMIN_PASSWORD=your-password-here
+BLOG_ADMIN_SESSION_SECRET=your-session-secret-here
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This file is gitignored and must never be committed.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Running locally
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000).
 
-To learn more about Next.js, take a look at the following resources:
+### Seeding the Blob store (first-time only)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+If the Blob store is empty and you need to upload any local `.mdx` drafts from `src/content/blog/`:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+node --env-file=.env.local scripts/seed-blob.mjs
+```
 
-## Deploy on Vercel
+This is safe to re-run — it overwrites any existing blobs with the same slug.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Blog admin
+
+The admin is a password-protected interface for creating, editing, and deleting blog posts. It is **not linked from the public site** — navigate to it directly.
+
+| Route | Purpose |
+|---|---|
+| `/admin/login` | Enter `BLOG_ADMIN_PASSWORD` to log in |
+| `/admin/blog` | Dashboard — create a new post, view/edit/delete existing posts |
+| `/admin/blog/[slug]` | Edit a specific post |
+
+### Logging in
+
+Go to `/admin/login` and enter the admin password. On success, a signed session cookie is set (8-hour TTL). If you enter the wrong password 5 times within 15 minutes, the IP is rate-limited.
+
+### Creating / editing posts
+
+Fill in the form fields:
+
+- **Title** — also determines the URL slug (e.g. "Hello World" → `/blog/hello-world`)
+- **Date & time** — defaults to your current local time and timezone
+- **Excerpt** — short summary shown on the blog listing page
+- **Tags** — comma-separated
+- **Python libraries** — check any libraries readers will need to run `python-run` code blocks in this post; add unlisted ones in the extra field
+- **Content** — full Markdown (supports `embed` and `python-run` blocks, see below)
+
+Changes are saved to Vercel Blob. The public blog pages revalidate automatically after each save/delete.
+
+---
+
+## Environment variables
+
+| Variable | Required | Description |
+|---|---|---|
+| `BLOB_READ_WRITE_TOKEN` | Yes | Read-write token for the private Vercel Blob store |
+| `BLOG_ADMIN_PASSWORD` | Yes | Password for the `/admin/login` form |
+| `BLOG_ADMIN_SESSION_SECRET` | Recommended | Signs session cookies; falls back to `BLOG_ADMIN_PASSWORD` if unset |
+
+For **production (Vercel)**: add `BLOG_ADMIN_PASSWORD` and `BLOG_ADMIN_SESSION_SECRET` in the Vercel dashboard under Settings → Environment Variables. `BLOB_READ_WRITE_TOKEN` is added automatically when the Blob store is connected to the project. Redeploy after any env var change.
+
+---
+
+## Embedding interactive demos in posts
+
+Use a fenced `embed` code block with a single URL:
+
+````md
+```embed
+https://stackblitz.com/edit/your-demo
+```
+````
+
+Allowed embed hosts: `codepen.io`, `codesandbox.io`, `stackblitz.com`.
+
+---
+
+## Runnable Python snippets in posts
+
+Use a `python-run` fenced code block to let readers execute Python in-browser (via Pyodide):
+
+````md
+```python-run
+import numpy as np
+print(np.arange(5))
+```
+````
+
+Libraries selected in the admin form are preloaded before execution. Packages not in the default Pyodide bundle (e.g. `seaborn`) are installed via `micropip` at runtime. Execution happens entirely in the reader's browser — nothing runs on the server.
+
+---
+
+## Deployment
+
+Deployed automatically on Vercel on every push to `main`. The site requires a platform that supports Next.js server features (cookies, server actions) — it will not work on static hosts like GitHub Pages.

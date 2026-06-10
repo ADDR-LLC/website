@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { getSortedPostsData } from '@/lib/blog';
 import { Calendar, ArrowRight } from 'lucide-react';
 
-export function BlogSection() {
-  const posts = getSortedPostsData();
+export async function BlogSection() {
+  const posts = await getSortedPostsData();
 
   return (
     <section id="blog" className="bg-[#000000] text-white py-16 md:py-24 px-4 md:px-12 lg:px-24 overflow-hidden relative w-full flex-1">
@@ -26,7 +26,7 @@ export function BlogSection() {
             >
               <div className="flex items-center gap-2 text-[#95bdc9] text-sm mb-4 font-mono">
                 <Calendar className="w-4 h-4" />
-                <time>{new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
+                <time>{new Date(post.date).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' })}</time>
               </div>
 
               <h3 className="text-xl md:text-2xl font-bold text-[#e8e8e8] mb-3 tracking-tight group-hover:text-white transition-colors duration-300">
